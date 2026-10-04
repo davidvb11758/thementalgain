@@ -66,10 +66,11 @@ See [docs/architecture.md](docs/architecture.md).
 
 ## Change global colors
 
-Edit **`src/styles/global.css`** → `@theme { --color-tmg-* … }`.  
-Reference **`TMG Color pallete.docx`** when finalizing palette #5 (light-steel blue).
+Official palette: **`TMG Color palette.docx`** (also `content/config/design-tokens.json`).
 
-Do not hard-code hex values in individual `.astro` files.
+Edit **`src/styles/global.css`** → `@theme { --color-tmg-* … }` to match. Do not hard-code hex values in individual `.astro` files.
+
+**Fonts:** Lato (body), Lora (headings) — Google Fonts, loaded in `BaseLayout.astro`.
 
 ## Deploy (Cloudflare Pages)
 

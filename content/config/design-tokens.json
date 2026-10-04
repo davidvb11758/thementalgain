@@ -1,0 +1,53 @@
+{
+  "$schema": "Design tokens from TMG Color palette.docx — single source of truth for colors and fonts.",
+  "colors": {
+    "primary": {
+      "name": "Indigo",
+      "hex": "#4057a1",
+      "rgb": [64, 96, 161]
+    },
+    "accent": {
+      "name": "Light Blue",
+      "note": "Accent and button color per palette doc",
+      "hex": "#abddf7",
+      "rgb": [171, 221, 247]
+    },
+    "text": {
+      "name": "Charcoal",
+      "hex": "#25283d",
+      "rgb": [37, 40, 61]
+    },
+    "border": {
+      "name": "Charcoal (derived)",
+      "note": "Border hex not specified in docx; use charcoal at low opacity or define in global.css",
+      "hex": "#25283d"
+    },
+    "backgroundWhite": {
+      "name": "White",
+      "hex": "#ffffff",
+      "rgb": [255, 255, 255]
+    },
+    "backgroundLight": {
+      "name": "Lavender Gray",
+      "hex": "#f5f4fa",
+      "rgb": [245, 244, 250]
+    },
+    "backgroundDark": {
+      "name": "Midnight blue",
+      "hex": "#17213c",
+      "rgb": [23, 33, 60]
+    }
+  },
+  "fonts": {
+    "body": {
+      "family": "Lato",
+      "provider": "Google Fonts",
+      "usage": "Standard text, paragraphs, lists"
+    },
+    "heading": {
+      "family": "Lora",
+      "provider": "Google Fonts",
+      "usage": "Headings H1–H4"
+    }
+  }
+}

@@ -1,21 +1,27 @@
 @import "tailwindcss";
 
 /*
-  TMG design tokens — change colors/fonts here (see TMG Color pallete.docx).
-  Pilot site values until palette #5 + light-steel blue is finalized.
+  TMG design tokens — from TMG Color palette.docx
+  JSON mirror: content/config/design-tokens.json
 */
 @theme {
-  --color-tmg-text: #353a3d;
-  --color-tmg-text-muted: #666666;
-  --color-tmg-heading: #3a606e;
-  --color-tmg-surface: #f5f3f2;
+  /* Colors */
+  --color-tmg-primary: #4057a1;
+  --color-tmg-accent: #abddf7;
+  --color-tmg-text: #25283d;
+  --color-tmg-border: rgb(37 40 61 / 0.15);
+  --color-tmg-surface: #f5f4fa;
   --color-tmg-surface-elevated: #ffffff;
-  --color-tmg-accent: #db7965;
-  --color-tmg-nav: #667780;
-  --color-tmg-action: #097baa;
-  --color-tmg-footer: #65bedb;
-  --color-tmg-steel: #7b9cad;
+  --color-tmg-surface-dark: #17213c;
 
+  /* Semantic aliases (use these in components) */
+  --color-tmg-heading: var(--color-tmg-text);
+  --color-tmg-action: var(--color-tmg-primary);
+  --color-tmg-button: var(--color-tmg-accent);
+  --color-tmg-nav: var(--color-tmg-primary);
+  --color-tmg-footer: var(--color-tmg-surface-dark);
+
+  /* Typography — Lato body, Lora headings */
   --font-sans: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-heading: "Lora", Georgia, "Times New Roman", serif;
 
@@ -30,7 +36,7 @@
   --container-content: 75rem;
   --radius-card: 0.125rem;
   --radius-image: 5rem 0.25rem;
-  --shadow-card: 0 4px 24px rgb(58 96 110 / 0.12);
+  --shadow-card: 0 4px 24px rgb(37 40 61 / 0.12);
 }
 
 @layer base {
@@ -72,7 +78,7 @@
   }
 
   :focus-visible {
-    @apply outline-3 outline-offset-2 outline-tmg-accent;
+    @apply outline-3 outline-offset-2 outline-tmg-primary;
   }
 }
 
@@ -82,18 +88,18 @@
   }
 
   .btn-primary {
-    @apply inline-block rounded-[var(--radius-card)] bg-tmg-action px-5 py-2.5 text-sm font-medium uppercase tracking-wide text-white transition-colors hover:bg-[#07638a];
+    @apply inline-block rounded-[var(--radius-card)] bg-tmg-button px-5 py-2.5 text-sm font-medium uppercase tracking-wide text-tmg-text transition-colors hover:brightness-95;
   }
 
   .btn-secondary {
-    @apply inline-block rounded-[var(--radius-card)] border border-tmg-heading bg-transparent px-5 py-2.5 text-sm font-medium text-tmg-heading transition-colors hover:bg-tmg-surface;
+    @apply inline-block rounded-[var(--radius-card)] border border-tmg-border bg-transparent px-5 py-2.5 text-sm font-medium text-tmg-primary transition-colors hover:bg-tmg-surface;
   }
 
   .card {
-    @apply rounded-[var(--radius-card)] bg-tmg-surface-elevated p-6 shadow-[var(--shadow-card)];
+    @apply rounded-[var(--radius-card)] border border-tmg-border bg-tmg-surface-elevated p-6 shadow-[var(--shadow-card)];
   }
 
   .prose-tmg {
-    @apply text-tmg-heading [&_a]:text-tmg-action [&_a]:underline [&_em]:italic [&_strong]:font-bold;
+    @apply text-tmg-text [&_a]:text-tmg-primary [&_a]:underline [&_em]:italic [&_strong]:font-bold;
   }
 }

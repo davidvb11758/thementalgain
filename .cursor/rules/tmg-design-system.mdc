@@ -1,0 +1,32 @@
+---
+description: The Mental Gain official colors and fonts (TMG Color palette.docx)
+alwaysApply: true
+---
+
+# TMG design system (authoritative)
+
+Source: **`TMG Color palette.docx`** at repo root. Machine-readable copy: `content/config/design-tokens.json`. CSS: `src/styles/global.css` `@theme`.
+
+## Colors
+
+| Role | Name | Hex |
+|------|------|-----|
+| Primary | Indigo | `#4057a1` |
+| Accent / buttons | Light Blue | `#abddf7` |
+| Text | Charcoal | `#25283d` |
+| Background white | White | `#ffffff` |
+| Background light | Lavender Gray | `#f5f4fa` |
+| Background dark | Midnight blue | `#17213c` |
+
+Border color is not specified in the docx; use Charcoal at reduced opacity or tokens in `global.css`—do not invent a second palette.
+
+## Fonts
+
+- **Body** (paragraphs, lists, UI): **Lato** (Google Fonts)
+- **Headings** (H1–H4): **Lora** (Google Fonts)
+
+## Rules for agents
+
+- Do **not** hard-code one-off hex values in components; use `@theme` / Tailwind `tmg-*` tokens.
+- Do **not** replace Lato/Lora without an explicit user request and docx update.
+- Older pilot colors (teal/coral from legacy `pilot-site`) are **deprecated** unless the user says otherwise.
