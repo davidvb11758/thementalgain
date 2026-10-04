@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+/*
+  TMG design tokens — change colors/fonts here (see TMG Color pallete.docx).
+  Pilot site values until palette #5 + light-steel blue is finalized.
+*/
+@theme {
+  --color-tmg-text: #353a3d;
+  --color-tmg-text-muted: #666666;
+  --color-tmg-heading: #3a606e;
+  --color-tmg-surface: #f5f3f2;
+  --color-tmg-surface-elevated: #ffffff;
+  --color-tmg-accent: #db7965;
+  --color-tmg-nav: #667780;
+  --color-tmg-action: #097baa;
+  --color-tmg-footer: #65bedb;
+  --color-tmg-steel: #7b9cad;
+
+  --font-sans: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Lora", Georgia, "Times New Roman", serif;
+
+  --text-body: 1.125rem;
+  --text-small: 0.875rem;
+  --text-h1: clamp(1.75rem, 4vw, 2.375rem);
+  --text-h2: clamp(1.5rem, 3vw, 1.75rem);
+  --text-h3: 1.25rem;
+  --text-h4: 1.125rem;
+
+  --spacing-section: clamp(3rem, 6vw, 5rem);
+  --container-content: 75rem;
+  --radius-card: 0.125rem;
+  --radius-image: 5rem 0.25rem;
+  --shadow-card: 0 4px 24px rgb(58 96 110 / 0.12);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-tmg-surface-elevated text-tmg-text font-sans text-[length:var(--text-body)] leading-relaxed antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading font-normal text-tmg-heading;
+  }
+
+  h1 {
+    font-size: var(--text-h1);
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+  }
+
+  h3 {
+    font-size: var(--text-h3);
+  }
+
+  h4 {
+    font-size: var(--text-h4);
+  }
+
+  :focus-visible {
+    @apply outline-3 outline-offset-2 outline-tmg-accent;
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply mx-auto w-full max-w-[var(--container-content)] px-5;
+  }
+
+  .btn-primary {
+    @apply inline-block rounded-[var(--radius-card)] bg-tmg-action px-5 py-2.5 text-sm font-medium uppercase tracking-wide text-white transition-colors hover:bg-[#07638a];
+  }
+
+  .btn-secondary {
+    @apply inline-block rounded-[var(--radius-card)] border border-tmg-heading bg-transparent px-5 py-2.5 text-sm font-medium text-tmg-heading transition-colors hover:bg-tmg-surface;
+  }
+
+  .card {
+    @apply rounded-[var(--radius-card)] bg-tmg-surface-elevated p-6 shadow-[var(--shadow-card)];
+  }
+
+  .prose-tmg {
+    @apply text-tmg-heading [&_a]:text-tmg-action [&_a]:underline [&_em]:italic [&_strong]:font-bold;
+  }
+}

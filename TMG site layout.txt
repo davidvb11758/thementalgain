@@ -1,0 +1,71 @@
+TheMentalGain new website organization
+
+KEY to the notation:
+"-"  this is a physical page
+"--" this is a physical subpage
+"[xxx]" this is a section on a page
+"(xxx)" are just notes for the reader of this doc
+"*" & "**" these are just notes on what will be in the footer
+
+
+- HOME
+  [Image & attention grabber]
+  [TheMentalGain overview]
+  [signup for newsletter]
+  [Services offered overview]
+  [my clients overview & links to My Clients page]
+  [social media overview & links to Social Media page]
+  [podcast overview & links to section on Social Media page]
+
+- Services
+  [services overview]
+  [service 1 description & link to --service 1 page]
+  [service 2 description & link to --service 2 page]
+  [service 3 description & link to --service 3 page]
+  [service 4 description & link to --service 4 page]
+
+- My Clients
+  [my clients overview]
+  [list of teams]
+  [list of individuals]
+  [testimonials]
+
+- Social media and blog
+  [overview]
+  [social media links]
+  [podcast info & links]
+  [blog posts??]
+
+- About
+  [about me or our team]  
+  [contact us]
+  [travel & onsite visits]
+  [FAQ (includes travel & onsite??)]
+
+- Booking
+
+- Confidentiality statement (not on the menu)
+
+
+
+[Footer] (at bottom of every page)
+  * copyright
+  * quick jumps to:
+    ** confidentiality statement
+    ** contact us (jump to the page and section)
+    ** FAQ (jump to the page and section)
+  * quick page links
+    ** services page (jump to the page)
+    ** book me (jump to the page)
+
+Primary menu (placed at the top of each page)
+- home
+- services
+-- service 1
+-- service 2
+-- service 3
+-- service 4
+- my clients
+- social media and blog
+- about
+- booking
