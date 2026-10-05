@@ -1027,9 +1027,37 @@ h1, h2, h3, h4 {
 
 /* ---------- Footer ---------- */
 .site-footer {
-  background: var(--footer-bg);
+  position: relative;
+  overflow: hidden;
   color: #fff;
   padding-block: 80px 40px;
+  background-color: rgb(23 33 60 / 0.35);
+}
+
+.site-footer-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("../images/butterflies_1200px.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.site-footer-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(23 33 60 / 0.62) 0%,
+    rgb(23 33 60 / 0.55) 45%,
+    rgb(64 87 161 / 0.5) 100%
+  );
+}
+
+.site-footer > .container {
+  position: relative;
+  z-index: 1;
 }
 
 .footer-grid {
@@ -1290,82 +1318,129 @@ h1, h2, h3, h4 {
 }
 
 /* ---------- Service detail subpages ---------- */
-.splash--service-detail .splash-image {
-  min-height: min(45vw, 560px);
-}
-
-.splash-copy--detail {
-  top: 58%;
-  gap: 0.5rem;
-}
-
-.splash-copy--detail h1 {
-  font-size: clamp(1.75rem, 5.5vw, 3.25rem);
-  white-space: normal;
-  max-width: 18ch;
-}
-
-.service-detail-eyebrow {
-  margin: 0;
-  font-size: 0.875rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-.service-detail-eyebrow a {
-  color: #abddf7;
-  text-decoration: none;
-}
-
-.service-detail-eyebrow a:hover {
-  text-decoration: underline;
-}
-
-.service-detail-body {
-  padding: clamp(48px, 6vw, 72px) 0 clamp(64px, 8vw, 96px);
+.service-detail-panel {
+  padding: clamp(48px, 6vw, 80px) clamp(16px, 3vw, 24px);
   background: #ffffff;
 }
 
-.service-detail-body-inner {
+.service-detail-split {
   display: grid;
-  gap: clamp(32px, 5vw, 56px);
-  max-width: 960px;
+  grid-template-columns: 1fr;
+  gap: clamp(32px, 5vw, 48px);
+  max-width: 1180px;
+  margin-inline: auto;
+  align-items: start;
 }
 
 @media (min-width: 900px) {
-  .service-detail-body-inner {
-    grid-template-columns: 1.15fr 0.85fr;
-    align-items: start;
+  .service-detail-split {
+    grid-template-columns: minmax(0, 645px) minmax(0, 1fr);
+    gap: clamp(40px, 5vw, 72px);
   }
 }
 
-.service-detail-body .rich-text p {
-  margin: 0 0 1.25rem;
-  color: #25283d;
-  line-height: 1.75;
-}
-
-.service-detail-aside {
-  padding: 28px 24px;
+.service-detail-media {
+  margin: 0;
+  overflow: hidden;
   background: #f5f4fa;
-  border-radius: 6px;
-  border-left: 4px solid #4057a1;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgb(23 33 60 / 0.08);
 }
 
-.service-detail-aside h2 {
-  font-size: 1.35rem;
-  color: #17213c;
-  margin: 0 0 12px;
+.service-detail-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 
-.service-detail-aside .rich-text {
-  margin-bottom: 20px;
+.service-detail-copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 40px);
+  padding-block: clamp(0px, 2vw, 12px);
+}
+
+.service-detail-description .rich-text {
+  margin-bottom: 1.25rem;
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.75;
   color: #25283d;
+}
+
+.service-detail-description .rich-text:last-child {
+  margin-bottom: 0;
+}
+
+.service-detail-card {
+  position: relative;
+  padding: clamp(24px, 4vw, 36px) clamp(24px, 4vw, 40px);
+  background: #ffffff;
+  border-radius: 6px;
+  border-left: 5px solid #4057a1;
+  box-shadow:
+    0 4px 24px rgb(23 33 60 / 0.06),
+    0 0 0 1px rgb(64 87 161 / 0.08);
+}
+
+.service-detail-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(45%, 220px);
+  height: 100%;
+  border-radius: 0 6px 6px 0;
+  background: linear-gradient(135deg, rgb(171 221 247 / 0.22) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.service-detail-card-title {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 14px;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.5vw, 1.45rem);
+  line-height: 1.35;
+  color: #17213c;
+}
+
+.service-detail-card .rich-text {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 22px;
+  font-size: 1rem;
   line-height: 1.65;
+  color: #25283d;
+}
+
+.service-detail-card-action {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+.service-detail-card-action .btn-primary {
+  display: inline-block;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: #17213c;
+  background: #abddf7;
+  border-radius: 2px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.service-detail-card-action .btn-primary:hover {
+  background: #4057a1;
+  color: #ffffff;
 }
 
 .service-detail-back {
+  position: relative;
+  z-index: 1;
   margin: 20px 0 0;
   font-size: 0.9375rem;
 }

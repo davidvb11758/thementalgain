@@ -6,10 +6,10 @@ From **TMG site layout.txt** / **TMG rqmts.docx**.
 |------|-----------------|--------------|
 | Home | `/` | `content/pages/home.md` |
 | Services | `/services/` | `content/pages/services.md` |
-| Initial Consultation | `/services/initial-consultation/` | `site/services/initial-consultation/index.html` |
-| Individual Sessions | `/services/individual-sessions/` | `site/services/individual-sessions/index.html` |
-| Online Learning Modules | `/services/online-learning-modules/` | `site/services/online-learning-modules/index.html` |
-| Team Sessions | `/services/team-sessions/` | `site/services/team-sessions/index.html` |
+| Initial Consultation | `/services/initial-consultation/` | `site/services/initial-consultation/index.html` · copy: `site/text_content/service-initial-consultation.md` |
+| Individual Sessions | `/services/individual-sessions/` | `site/services/individual-sessions/index.html` · copy: `site/text_content/service-individual-sessions.md` |
+| Online Learning Modules | `/services/online-learning-modules/` | `site/services/online-learning-modules/index.html` · copy: `site/text_content/service-online-learning-modules.md` |
+| Team Sessions | `/services/team-sessions/` | `site/services/team-sessions/index.html` · copy: `site/text_content/service-team-sessions.md` |
 | My Clients | `/my-clients/` | TBD |
 | Social media and blog | `/social/` | TBD |
 | About | `/about/` | TBD |
