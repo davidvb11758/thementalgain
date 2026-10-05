@@ -54,7 +54,7 @@ Online, self-paced mental performance modules.
 
 Team success is more than just players.
 
-*(Each card: **Learn more…** → `services.html#service-*-heading` until dedicated service pages exist.)*
+*(Each card: **Discover more…** → `services/<slug>/` detail pages.)*
 
 ---
 

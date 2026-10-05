@@ -11,6 +11,8 @@
 
 ## \[services overview\]
 
+Full-width hero: `images/services/services-hero-option-b-morning-horizon-1920x700.jpg` (headlines in `services.html`).
+
 ### Helping you reach your potential
 
 **ID:** `services-overview-p1`
@@ -24,7 +26,7 @@ Have Sabrina meet with an individual athlete, or an entire team. During the sess
 *(Live layout: photo left, copy right.)*
 
 **Image ID:** `services-image-initial-consultation`
-**Image file:** `images/services/2022-player-injury-500b.png`
+**Image file (listing):** `images/services/2022-player-injury-645x280.png` — full: `2022-player-injury-500b.png` (detail page)
 **Image alt:** Athlete sitting on court after an injury, head in hands
 
 ### Initial Consultation
@@ -48,7 +50,7 @@ Sessions can be online or in-person.
 *(Live layout: copy left, photo right.)*
 
 **Image ID:** `services-image-individual-sessions`
-**Image file:** `images/services/17r-raina-jump-joy-650.jpg`
+**Image file (listing):** `images/services/17r-raina-jump-joy-645x280.jpg` — full: `17r-raina-jump-joy-650.jpg` (detail page)
 **Image alt:** Volleyball player jumping with joy
 
 ### Individual Sessions
@@ -68,7 +70,7 @@ Sessions can be online or in-person. There is no long-term commitment required.
 *(Live layout: photo left, copy right.)*
 
 **Image ID:** `services-image-online-modules`
-**Image file:** `images/services/Rockets3Players1a.png`
+**Image file (listing):** `images/services/Rockets3Players-645x280.png` — full: `Rockets3Players1a.png` (detail page)
 **Image alt:** Three Rockets volleyball players together on court
 
 ### Online Learning Modules
@@ -88,7 +90,7 @@ Choose from many modules to target your specific needs.
 *(Live layout: copy left, photo right; live page uses `h3` for heading.)*
 
 **Image ID:** `services-image-team-sessions`
-**Image file:** `images/services/2022-team-celebrate-500b.png`
+**Image file (listing):** `images/services/2022-team-celebrate-645x280.png` — full: `2022-team-celebrate-500b.png` (detail page)
 **Image alt:** Team celebrating together
 
 ### Team Sessions

@@ -9,17 +9,12 @@
 
 ---
 
-## \[Image & attention grabber\]
+## \[SPLASH\]
 
-### Hi, I'm Sabrina…
+Full-width image: `images/Xtream_whole_arena.png`. Headlines in `site/index.html`:
 
-**ID:** `home-hero-p1`
-
-I am a *Certified Mental Performance Consultant*® . We all need that mental lift or that mental edge. Work with me and I will help you achieve the mental gain you have been striving for.
-
-**ID:** `home-hero-p2`
-
-Every person is different. And each requires personal understanding, and a personal plan to help them achieve their desired goals. Whether it is confidence, motivation, self-esteem, or any other type of support, together we can explore your past and get you on your way to peak performance.
+- **H2:** Promoting Healthy Minds and Peak Performance
+- **H3:** What do you have to gain?
 
 ---
 

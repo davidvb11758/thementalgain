@@ -18,101 +18,122 @@
   <script src="js/services-content.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
-<body>
+<body class="services-page">
   <a class="skip-link" href="#content">Skip to content</a>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="site-logo" href="index.html" aria-label="The Mental Gain – home">
-        <img src="images/logo.png" alt="The Mental Gain" width="507" height="257">
-      </a>
-
-      <button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">
-        <span class="menu-toggle-bars" aria-hidden="true"></span>
-        <span class="sr-only">Menu</span>
-      </button>
-
-      <nav id="primary-nav" class="primary-nav" aria-label="Primary">
-        <ul>
-          <li><a href="index.html">The Mental Gain</a></li>
-          <li><a href="services.html" aria-current="page">Services</a></li>
-          <li><a href="https://thementalgain.com/?page_id=5037">Testimonials</a></li>
-          <li><a href="https://thementalgain.com/?page_id=4572">Contact</a></li>
-          <li><a href="https://thementalgain.com/?page_id=4835">My Story</a></li>
-          <li><a href="https://thementalgain.com/?page_id=5148">Book Me</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="content" class="services-page">
+  <main id="content">
 
     <p class="home-content-status" id="page-content-status" role="status" hidden></p>
 
-    <section class="page-hero services-page-hero" aria-labelledby="services-overview-heading">
-      <div class="container">
+    <section class="splash" aria-labelledby="services-overview-heading">
+      <header class="site-header site-header--overlay">
+        <div class="container header-inner">
+          <a class="site-logo" href="index.html" aria-label="The Mental Gain – home">
+            <img src="images/logo.png" alt="The Mental Gain" width="507" height="257">
+          </a>
+
+          <button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">
+            <span class="menu-toggle-bars" aria-hidden="true"></span>
+            <span class="sr-only">Menu</span>
+          </button>
+
+          <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+            <ul>
+              <li><a href="index.html">The Mental Gain</a></li>
+              <li><a href="services.html" aria-current="page">Services</a></li>
+              <li><a href="https://thementalgain.com/?page_id=5037">Testimonials</a></li>
+              <li><a href="https://thementalgain.com/?page_id=4572">Contact</a></li>
+              <li><a href="https://thementalgain.com/?page_id=4835">My Story</a></li>
+              <li><a href="https://thementalgain.com/?page_id=5148">Book Me</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <img
+        class="splash-image"
+        src="images/services/services-hero-option-b-morning-horizon-1920x700.jpg"
+        alt="Young adult on a hill plateau looking toward an open morning horizon"
+        width="1920"
+        height="700"
+        fetchpriority="high"
+        decoding="async"
+      >
+      <div class="splash-copy">
         <h1 id="services-overview-heading">Helping you reach your potential</h1>
-        <div class="rich-text page-intro" id="services-overview-p1">Have Sabrina meet with an individual athlete, or an entire team. During the session, clients can expect to address their goals, learn mental skills, and grow as an athlete. Athletes can expect to improve their performance by developing psychological skills such as confidence, bouncing back from mistakes, resiliency, motivation, performing under pressure, and overcoming perfectionism.</div>
+        <p class="splash-subheading">What do you have to gain?</p>
       </div>
     </section>
 
-    <!-- Initial Consultation: image | text -->
-    <section class="service-split" aria-labelledby="service-1-heading">
+    <section class="services-overview-band" aria-label="Services overview">
+      <div class="container">
+        <div class="services-overview-intro">
+          <div class="rich-text services-overview-lead" id="services-overview-p1">Have Sabrina meet with an individual athlete, or an entire team. During the session, clients can expect to address their goals, learn mental skills, and grow as an athlete. Athletes can expect to improve their performance by developing psychological skills such as confidence, bouncing back from mistakes, resiliency, motivation, performing under pressure, and overcoming perfectionism.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-split service-split--section" id="initial-consultation" aria-labelledby="service-1-heading">
       <div class="service-split-inner service-split--image-left">
-        <figure class="service-split-media">
-          <img id="services-image-initial-consultation" src="images/services/2022-player-injury-500b.png" alt="Athlete sitting on court after an injury, head in hands" width="800" height="600" loading="lazy">
+        <figure class="service-split-media service-split-media--listing">
+          <img id="services-image-initial-consultation" src="images/services/2022-player-injury-645x280.png" alt="Athlete sitting on court after an injury, head in hands" width="645" height="280" loading="lazy">
         </figure>
         <div class="service-split-body">
           <h2 id="service-1-heading">Initial Consultation</h2>
           <div class="rich-text" id="services-initial-consultation-p1">Sign up for your FREE initial consultation for individual clients. Here we will discuss the sport psychology process, explore your needs, and answer any questions.</div>
           <div class="rich-text" id="services-initial-consultation-p2">Have questions before getting started? Feel free to contact me, there is no long-term commitment required.</div>
           <div class="rich-text" id="services-initial-consultation-p3">Sessions can be online or in-person.</div>
-          <p class="service-contact"><a class="link-text" href="https://thementalgain.com/?page_id=4572">Contact Me</a></p>
+          <p class="service-more-wrap">
+            <a class="service-discover-more" href="services/initial-consultation/">Discover more…</a>
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Individual Sessions: text | image -->
-    <section class="service-split" aria-labelledby="service-2-heading">
+    <section class="service-split service-split--section service-split--alt" id="individual-sessions" aria-labelledby="service-2-heading">
       <div class="service-split-inner service-split--image-right">
         <div class="service-split-body">
           <h2 id="service-2-heading">Individual Sessions</h2>
           <div class="rich-text" id="services-individual-sessions-p1">Let's dive into <em>you</em>. Let's learn about your situation and work together to bring out the best you can be. During our individual sessions we can help you understand your mental strengths and areas for improvement. Whether it is confidence, or motivation, or self-esteem, or anything else, we can unlock the door to gain that mental edge on your way to peak performance.</div>
           <div class="rich-text" id="services-individual-sessions-p2">Sessions can be online or in-person. There is no long-term commitment required.</div>
-          <p class="service-contact"><a class="link-text" href="https://thementalgain.com/?page_id=4572">Contact Me</a></p>
+          <p class="service-more-wrap">
+            <a class="service-discover-more" href="services/individual-sessions/">Discover more…</a>
+          </p>
         </div>
-        <figure class="service-split-media">
-          <img id="services-image-individual-sessions" src="images/services/17r-raina-jump-joy-650.jpg" alt="Volleyball player jumping with joy" width="650" height="650" loading="lazy">
+        <figure class="service-split-media service-split-media--listing">
+          <img id="services-image-individual-sessions" src="images/services/17r-raina-jump-joy-645x280.jpg" alt="Volleyball player jumping with joy" width="645" height="280" loading="lazy">
         </figure>
       </div>
     </section>
 
-    <!-- Online Learning Modules: image | text -->
-    <section class="service-split" aria-labelledby="service-3-heading">
+    <section class="service-split service-split--section" id="online-learning-modules" aria-labelledby="service-3-heading">
       <div class="service-split-inner service-split--image-left">
-        <figure class="service-split-media">
-          <img id="services-image-online-modules" src="images/services/Rockets3Players1a.png" alt="Three Rockets volleyball players together on court" width="900" height="600" loading="lazy">
+        <figure class="service-split-media service-split-media--listing">
+          <img id="services-image-online-modules" src="images/services/Rockets3Players-645x280.png" alt="Three Rockets volleyball players together on court" width="645" height="280" loading="lazy">
         </figure>
         <div class="service-split-body">
           <h2 id="service-3-heading">Online Learning Modules</h2>
           <div class="rich-text" id="services-online-modules-p1">Online, self-paced mental performance modules designed for athletes who want to build confidence, focus, and resilience. Each module includes a 30-minute 1-on-1 implementation session to provide personalized implementation strategies to training and competition.</div>
           <div class="rich-text" id="services-online-modules-p2">Choose from many modules to target your specific needs.</div>
-          <p class="service-contact"><a class="link-text" href="https://thementalgain.com/?page_id=4572">Contact Me</a></p>
+          <p class="service-more-wrap">
+            <a class="service-discover-more" href="services/online-learning-modules/">Discover more…</a>
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Team Sessions: text | image -->
-    <section class="service-split" aria-labelledby="service-4-heading">
+    <section class="service-split service-split--section service-split--alt" id="team-sessions" aria-labelledby="service-4-heading">
       <div class="service-split-inner service-split--image-right">
         <div class="service-split-body">
-          <h3 id="service-4-heading" class="service-heading-h3">Team Sessions</h3>
+          <h2 id="service-4-heading">Team Sessions</h2>
           <div class="rich-text" id="services-team-sessions-p1">Coaches can choose for these sessions to be in-person or virtual. We will address the team's needs, learn mental skills, and <em>grow as a group</em>! Team sessions are customized based on each team's needs. Common topics are communication, resiliency, performing under pressure, maximizing team performance, goals, and much more!</div>
           <div class="rich-text" id="services-team-sessions-p2">Sessions can be online or in-person. There is no long-term commitment required.</div>
-          <p class="service-contact"><a class="link-text" href="https://thementalgain.com/?page_id=4572">Contact Me</a></p>
+          <p class="service-more-wrap">
+            <a class="service-discover-more" href="services/team-sessions/">Discover more…</a>
+          </p>
         </div>
-        <figure class="service-split-media">
-          <img id="services-image-team-sessions" src="images/services/2022-team-celebrate-500b.png" alt="Team celebrating together" width="800" height="600" loading="lazy">
+        <figure class="service-split-media service-split-media--listing">
+          <img id="services-image-team-sessions" src="images/services/2022-team-celebrate-645x280.png" alt="Team celebrating together" width="645" height="280" loading="lazy">
         </figure>
       </div>
     </section>

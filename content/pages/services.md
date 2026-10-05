@@ -11,7 +11,10 @@
 
 ## \[services overview\]
 
-### Helping you reach your potential
+Full-width hero image: `images/services/services-hero-option-b-morning-horizon-1920x700.jpg` (1920×700). Headlines in `site/services.html`:
+
+- **H1:** Helping you reach your potential
+- **Tagline:** What do you have to gain?
 
 **ID:** `services-overview-p1`
 
@@ -21,10 +24,10 @@ Have Sabrina meet with an individual athlete, or an entire team. During the sess
 
 ## \[service 1 description & link to --service 1\]
 
-*(Live layout: photo left, copy right.)*
+*(Layout: photo left, copy right. **Discover more…** → `/services/initial-consultation/`.)*
 
 **Image ID:** `services-image-initial-consultation`
-**Image file:** `images/services/2022-player-injury-500b.png`
+**Image file (listing):** `images/services/2022-player-injury-645x280.png`
 **Image alt:** Athlete sitting on court after an injury, head in hands
 
 ### Initial Consultation
@@ -45,10 +48,10 @@ Sessions can be online or in-person.
 
 ## \[service 2 description & link to --service 2\]
 
-*(Live layout: copy left, photo right.)*
+*(Layout: copy left, photo right. **Discover more…** → `/services/individual-sessions/`.)*
 
 **Image ID:** `services-image-individual-sessions`
-**Image file:** `images/services/17r-raina-jump-joy-650.jpg`
+**Image file (listing):** `images/services/17r-raina-jump-joy-645x280.jpg`
 **Image alt:** Volleyball player jumping with joy
 
 ### Individual Sessions
@@ -65,10 +68,10 @@ Sessions can be online or in-person. There is no long-term commitment required.
 
 ## \[service 3 description & link to --service 3\]
 
-*(Live layout: photo left, copy right.)*
+*(Layout: photo left, copy right. **Discover more…** → `/services/online-learning-modules/`.)*
 
 **Image ID:** `services-image-online-modules`
-**Image file:** `images/services/Rockets3Players1a.png`
+**Image file (listing):** `images/services/Rockets3Players-645x280.png`
 **Image alt:** Three Rockets volleyball players together on court
 
 ### Online Learning Modules
@@ -85,10 +88,10 @@ Choose from many modules to target your specific needs.
 
 ## \[service 4 description & link to --service 4\]
 
-*(Live layout: copy left, photo right; live page uses `h3` for heading.)*
+*(Layout: copy left, photo right. **Discover more…** → `/services/team-sessions/`.)*
 
 **Image ID:** `services-image-team-sessions`
-**Image file:** `images/services/2022-team-celebrate-500b.png`
+**Image file (listing):** `images/services/2022-team-celebrate-645x280.png`
 **Image alt:** Team celebrating together
 
 ### Team Sessions
