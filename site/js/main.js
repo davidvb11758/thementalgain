@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initProvenReveal();
   initNewsletter();
+  initClientCarousel();
 });
 
 /** Success copy from home.md (set by home-content.js when loaded). */
@@ -40,12 +41,10 @@ function initProvenReveal() {
     ticking = false;
     if (!desktop.matches) { section.style.removeProperty('--p'); return; }
 
-    if (reduceMotion.matches) { section.style.setProperty('--p', 1); return; }  // no animation: show lower part
+    if (reduceMotion.matches) { section.style.setProperty('--p', 1); return; }
 
     const rect = section.getBoundingClientRect();
     const vh = window.innerHeight;
-    // 0 when the banner starts entering the bottom of the screen,
-    // 1 when the banner is centred on screen (and stays 1 after that)
     const progress = (vh - rect.top) / ((vh + rect.height) / 2);
     section.style.setProperty('--p', Math.min(1, Math.max(0, progress)).toFixed(4));
   };
@@ -73,11 +72,9 @@ function initMobileMenu() {
     setOpen(toggle.getAttribute('aria-expanded') !== 'true');
   });
 
-  // close on Escape or when a link is chosen
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
   nav.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
 
-  // reset when resizing up to desktop
   window.matchMedia('(min-width: 1024px)').addEventListener('change', (e) => {
     if (e.matches) setOpen(false);
   });
@@ -101,8 +98,10 @@ function initBackToTop() {
 /* ---------- Newsletter form ---------- */
 function initNewsletter() {
   const form = document.getElementById('newsletter-form');
+  if (!form || form.dataset.layoutOnly === 'true') return;
+
   const status = document.getElementById('newsletter-status');
-  if (!form || !status) return;
+  if (!status) return;
 
   const show = (msg, type) => {
     status.textContent = msg;
@@ -145,5 +144,93 @@ function initNewsletter() {
     } finally {
       button.disabled = false;
     }
+  });
+}
+
+/* ---------- Client logo carousel (home) ---------- */
+function initClientCarousel() {
+  const root = document.getElementById('client-carousel');
+  const source = document.getElementById('client-carousel-source');
+  const track = document.getElementById('client-carousel-track');
+  if (!root || !source || !track) return;
+
+  const items = [...source.querySelectorAll('li')].map((li) => ({
+    src: li.dataset.src || '',
+    alt: li.dataset.alt || '',
+  })).filter((item) => item.src);
+
+  if (items.length < 3) return;
+
+  const slotEls = {
+    prev: track.querySelector('.client-carousel-slot--prev'),
+    center: track.querySelector('.client-carousel-slot--center'),
+    next: track.querySelector('.client-carousel-slot--next'),
+    enter: track.querySelector('.client-carousel-slot--enter'),
+  };
+  const status = document.getElementById('client-carousel-status');
+  if (!slotEls.prev || !slotEls.center || !slotEls.next || !slotEls.enter) return;
+
+  let index = 0;
+  const len = items.length;
+  let panning = false;
+
+  const mod = (i) => ((i % len) + len) % len;
+
+  const fillSlot = (slotEl, item) => {
+    const img = slotEl.querySelector('img');
+    if (!img || !item) return;
+    img.src = item.src;
+    img.alt = item.alt;
+  };
+
+  const render = () => {
+    fillSlot(slotEls.prev, items[mod(index - 1)]);
+    fillSlot(slotEls.center, items[index]);
+    fillSlot(slotEls.next, items[mod(index + 1)]);
+    fillSlot(slotEls.enter, items[mod(index + 2)]);
+    if (status) {
+      status.textContent = `Showing ${items[index].alt} (${index + 1} of ${len})`;
+    }
+  };
+
+  render();
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const advanceInstant = () => {
+    index = mod(index + 1);
+    render();
+  };
+
+  const advanceWithPan = () => {
+    if (panning) return;
+    panning = true;
+    track.classList.remove('is-panning-instant');
+    track.classList.add('is-panning');
+
+    const onEnd = (e) => {
+      if (e.propertyName !== 'transform') return;
+      track.removeEventListener('transitionend', onEnd);
+      track.classList.add('is-panning-instant');
+      track.classList.remove('is-panning');
+      index = mod(index + 1);
+      render();
+      requestAnimationFrame(() => {
+        track.classList.remove('is-panning-instant');
+        panning = false;
+      });
+    };
+
+    track.addEventListener('transitionend', onEnd);
+  };
+
+  const advance = reducedMotion ? advanceInstant : advanceWithPan;
+
+  const intervalMs = 2000;
+  let timer = window.setInterval(advance, intervalMs);
+
+  root.addEventListener('mouseenter', () => window.clearInterval(timer));
+  root.addEventListener('mouseleave', () => {
+    timer = window.setInterval(advance, intervalMs);
   });
 }

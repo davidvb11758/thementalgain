@@ -11,19 +11,12 @@
 
 ---
 
-## \[Image & attention grabber\]
+## \[SPLASH\]
 
-*(Hero: headline, intro copy, photo `images/sabrina.png`.)*
+Full-width image: `images/Xtream_whole_arena.png`. Headlines are static in `index.html` (not loaded from markdown):
 
-### Hi, I'm Sabrina…
-
-**ID:** `home-hero-p1`
-
-I am a *Certified Mental Performance Consultant*® . We all need that mental lift or that mental edge. Work with me and I will help you achieve the mental gain you have been striving for. THIS IS DRIVEN FROM **THE MD** file.
-
-**ID:** `home-hero-p2`
-
-Every person is different. And each requires personal understanding, and a personal plan to help them achieve their desired goals. Whether it is confidence, motivation, self-esteem, or any other type of support, together we can explore your past and get you on your way to peak performance.  *this was edited on google docs and downloaded a MD file.*
+- **H2:** Promoting Healthy Minds and Peak Performance
+- **H3:** What do you have to gain?
 
 ---
 
@@ -47,21 +40,21 @@ Every person is different. And each requires personal understanding, and a perso
 
 **ID:** `home-services-initial-consultation`
 
-Take you first step on your road to the mental gain. Call me to set up a complementary initial consultation. This is a 60-minute meeting. We'll spend some time getting to know each other. From there we'll map out a plan for your future success.
+Take your first step on your road to the mental gain.
 
 **ID:** `home-services-individual-sessions`
 
-Let's dive into *you*. Let's learn about your situation and work together to bring out the best you can be. During our individual sessions we can help you understand your mental strengths and areas for improvement. Whether it is confidence, or motivation, or self-esteem, or anything else, we can unlock the door to gain that mental edge on your way to peak performance.
+Let's dive into you.
 
 **ID:** `home-services-online-modules`
 
-Online, self-paced mental performance modules designed for athletes who want to build confidence, focus, and resilience. Each module includes a 30-minute 1-on-1 implementation session to provide personalized implementation strategies to training and competition.
+Online, self-paced mental performance modules.
 
 **ID:** `home-services-team-sessions`
 
-Team success is more than just individual players. There are many factors involved with the success or failure of a team. Team dynamics and interpersonal skills are just the beginning. We can explore individual personalities and interactions together. The coach(es) and all players are integral to the conversations and path to team success.
+Team success is more than just players.
 
-*(Each card links: **Contact Me** → Services / Contact on live site.)*
+*(Each card: **Learn more…** → `services.html#service-*-heading` until dedicated service pages exist.)*
 
 ---
 
@@ -69,6 +62,6 @@ Team success is more than just individual players. There are many factors involv
 
 *(Live home: section heading plus two rows of client logos; no body paragraph.)*
 
-### My clients include…
+### My Clients
 
-*(Logo images in HTML only: Barry University, Rockets, North Cobb, Stevens Institute of Technology, Walton, A5 Volleyball, Georgia State University, Morningside University, West Forsyth, many individual athletes.)*
+*(Nine client PNGs (325×225) in `#client-carousel-source` on `index.html`; carousel shows prev / center / next, advances every 2s.)*
