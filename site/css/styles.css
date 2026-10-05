@@ -269,9 +269,10 @@ h1, h2, h3, h4 {
 
 .splash-copy h2 {
   margin: 0;
-  width: max-content;
+  width: 100%;
   max-width: 100%;
-  font-size: clamp(1.75rem, 7vw, 4.5rem);
+  box-sizing: border-box;
+  font-size: clamp(0.55rem, calc((100vw - 2.5rem) / 27), 4.5rem);
   line-height: 1.15;
   color: #fff;
   text-shadow: 0 2px 16px rgb(0 0 0 / 0.45);
@@ -357,11 +358,6 @@ h1, h2, h3, h4 {
   .splash-copy {
     top: 43%;
     padding-bottom: 1.5rem;
-  }
-
-  .splash-copy h2 {
-    font-size: clamp(0.85rem, 3.8vw, 4.5rem);
-    white-space: nowrap;
   }
 
   .splash-subheading {
@@ -857,17 +853,29 @@ h1, h2, h3, h4 {
 
 .client-carousel-viewport {
   overflow: hidden;
-  width: calc(var(--client-side-w) + var(--client-gap) + var(--client-center-w) + var(--client-gap) + var(--client-side-w));
-  max-width: 100%;
+  width: 100%;
+  max-width: calc(var(--client-side-w) * 2 + var(--client-center-w) + var(--client-gap) * 2);
   margin-inline: auto;
   min-height: var(--client-center-h);
+  display: flex;
+  justify-content: center;
 }
 
 .client-carousel-track {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--client-gap);
   will-change: transform;
+  flex: 0 0 auto;
+}
+
+.client-carousel-slot--enter {
+  position: absolute;
+  left: calc(100% + var(--client-gap));
+  top: 50%;
+  translate: 0 -50%;
+  margin: 0;
 }
 
 .client-carousel-track.is-panning {
