@@ -1,53 +1,43 @@
-/* =========================================================
-   Load paragraph copy from text_content/home.md into
-   elements whose id matches each **ID:** block.
-   ========================================================= */
+/* Load text_content/about.md into elements whose id matches each **ID:** block. */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initHomeContent();
+  initAboutContent();
 });
 
-async function initHomeContent() {
-  const root = document.documentElement;
-  const mdUrl = root.dataset.homeContent;
+async function initAboutContent() {
+  const mdUrl = document.documentElement.dataset.pageContent;
   if (!mdUrl) return;
 
   try {
     const res = await fetch(mdUrl, { cache: 'no-cache' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
-    const text = await res.text();
-    applyHomeMarkdown(text);
+    applyAboutMarkdown(await res.text());
   } catch (err) {
-    console.warn('Could not load home.md:', err);
-    const status = document.getElementById('home-content-status');
+    console.warn('Could not load about.md:', err);
+    const status = document.getElementById('page-content-status');
     if (status) {
-      status.textContent = 'Page copy could not be loaded. Refresh or check that the site is served over HTTP.';
+      status.textContent = 'Page copy could not be loaded. Serve the site over HTTP and refresh.';
       status.hidden = false;
     }
   }
 }
 
-function applyHomeMarkdown(text) {
-  const blocks = parseIdBlocks(text);
-  for (const { id, paragraphs } of blocks) {
+function applyAboutMarkdown(text) {
+  for (const { id, paragraphs } of parseIdBlocks(text)) {
     const el = document.getElementById(id);
     if (!el) continue;
     el.innerHTML = paragraphsToHtml(paragraphs, el.tagName);
   }
-
-  applyNewsletterHints(text);
 }
 
-/** One paragraph → inline HTML; several → &lt;p&gt; wrappers (except bare H2 title). */
 function paragraphsToHtml(paragraphs, tagName = 'DIV') {
   if (!paragraphs.length) return '';
   const htmlParts = paragraphs.map((p) => inlineMarkdownToHtml(p));
-  if (tagName === 'H2' || tagName === 'H3') return htmlParts[0];
+  if (tagName === 'H1' || tagName === 'H2' || tagName === 'H3') return htmlParts[0];
   if (htmlParts.length === 1) return htmlParts[0];
   return htmlParts.map((h) => `<p>${h}</p>`).join('');
 }
 
-/** Blocks between **ID:** `code` and the next ID, heading, ---, or editor note line. */
 function parseIdBlocks(text) {
   const lines = text.split(/\r?\n/);
   const blocks = [];
@@ -72,11 +62,6 @@ function parseIdBlocks(text) {
       if (/^#{1,4} /.test(line)) break;
       if (line === '---') break;
       if (/^\*\(/.test(line.trim())) break;
-      if (/^\*Form label:/.test(line)) break;
-      if (/^\*Button text:/.test(line)) break;
-      if (/^\*Success message:/.test(line)) break;
-      if (/^\*\*Links:\*\*/.test(line)) break;
-      if (/^\*\*Listen on:\*\*/.test(line)) break;
       if (/^-\s/.test(line) && current.length === 0 && paragraphs.length === 0) break;
 
       if (line.trim() === '') {
@@ -99,27 +84,6 @@ function parseIdBlocks(text) {
   return blocks;
 }
 
-function applyNewsletterHints(text) {
-  const label = text.match(/\*Form label:\* (.+?)(?: \*Button text:|\n\*Button text:)/s);
-  const button = text.match(/\*Button text:\* (.+?)(?: \*Success message:|\n\*Success message:)/s);
-  const success = text.match(/\*Success message:\* (.+?)(?:\n---|\n## |\s*$)/s);
-
-  const unescapeMd = (s) => s.replace(/\\!/g, '!').replace(/\\\[/g, '[').replace(/\\\]/g, ']');
-
-  const input = document.getElementById('newsletter-email');
-  if (input && label) input.placeholder = unescapeMd(label[1].trim());
-
-  const form = document.getElementById('newsletter-form');
-  if (form && button) {
-    const btn = form.querySelector('button[type="submit"]');
-    if (btn) btn.textContent = unescapeMd(button[1].trim());
-  }
-
-  if (success) {
-    document.documentElement.dataset.newsletterSuccess = unescapeMd(success[1].trim());
-  }
-}
-
 function escapeHtml(s) {
   return s
     .replace(/&/g, '&amp;')
@@ -132,14 +96,11 @@ function inlineMarkdownToHtml(raw) {
   let s = escapeHtml(
     raw.replace(/\\!/g, '!').replace(/\\\[/g, '[').replace(/\\\]/g, ']')
   );
-
   s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
     const safeHref = href.replace(/"/g, '%22');
     return `<a href="${safeHref}">${label}</a>`;
   });
-
   s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-
   return s;
 }

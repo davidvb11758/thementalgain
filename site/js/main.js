@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initProvenReveal();
   initNewsletter();
   initClientCarousel();
+  initServicesFaq();
 });
 
 /** Success copy from home.md (set by home-content.js when loaded). */
@@ -159,37 +160,43 @@ function initClientCarousel() {
     alt: li.dataset.alt || '',
   })).filter((item) => item.src);
 
-  if (items.length < 3) return;
+  if (items.length < 2) return;
 
-  const slotEls = {
-    prev: track.querySelector('.client-carousel-slot--prev'),
-    center: track.querySelector('.client-carousel-slot--center'),
-    next: track.querySelector('.client-carousel-slot--next'),
-    enter: track.querySelector('.client-carousel-slot--enter'),
-  };
+  const slots = [...track.querySelectorAll('.client-carousel-slot')].map((slotEl) => {
+    const offset = Number(slotEl.dataset.slotOffset || 0);
+    const panTrack = slotEl.querySelector('.client-carousel-pan-track');
+    const imgs = panTrack ? [...panTrack.querySelectorAll('img')] : [];
+    return { slotEl, offset, panTrack, currentImg: imgs[0], nextImg: imgs[1] };
+  }).filter((s) => s.panTrack && s.currentImg && s.nextImg);
+
+  if (slots.length !== 5) return;
+
   const status = document.getElementById('client-carousel-status');
-  if (!slotEls.prev || !slotEls.center || !slotEls.next || !slotEls.enter) return;
-
-  let index = 0;
+  let centerIndex = 0;
   const len = items.length;
   let panning = false;
 
   const mod = (i) => ((i % len) + len) % len;
 
-  const fillSlot = (slotEl, item) => {
-    const img = slotEl.querySelector('img');
+  const itemAt = (center, offset) => items[mod(center + offset)];
+
+  const applyItemToImg = (img, item) => {
     if (!img || !item) return;
     img.src = item.src;
     img.alt = item.alt;
   };
 
   const render = () => {
-    fillSlot(slotEls.prev, items[mod(index - 1)]);
-    fillSlot(slotEls.center, items[index]);
-    fillSlot(slotEls.next, items[mod(index + 1)]);
-    fillSlot(slotEls.enter, items[mod(index + 2)]);
+    slots.forEach(({ offset, currentImg, nextImg, slotEl }) => {
+      const item = itemAt(centerIndex, offset);
+      applyItemToImg(currentImg, item);
+      nextImg.removeAttribute('src');
+      nextImg.alt = '';
+      nextImg.setAttribute('aria-hidden', 'true');
+      slotEl.querySelector('.client-carousel-pan-track')?.classList.remove('is-panning', 'is-panning-instant');
+    });
     if (status) {
-      status.textContent = `Showing ${items[index].alt} (${index + 1} of ${len})`;
+      status.textContent = `Showing ${items[centerIndex].alt} (${centerIndex + 1} of ${len})`;
     }
   };
 
@@ -198,30 +205,54 @@ function initClientCarousel() {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const advanceInstant = () => {
-    index = mod(index + 1);
+    centerIndex = mod(centerIndex + 1);
     render();
   };
 
   const advanceWithPan = () => {
     if (panning) return;
     panning = true;
-    track.classList.remove('is-panning-instant');
-    track.classList.add('is-panning');
+    const nextCenter = mod(centerIndex + 1);
+
+    slots.forEach(({ offset, currentImg, nextImg, panTrack }) => {
+      applyItemToImg(nextImg, itemAt(nextCenter, offset));
+      panTrack.classList.remove('is-panning-instant', 'is-panning');
+    });
+
+    requestAnimationFrame(() => {
+      slots.forEach(({ panTrack }) => panTrack.classList.add('is-panning'));
+    });
+
+    const panTracks = slots.map((s) => s.panTrack);
+    let finished = 0;
 
     const onEnd = (e) => {
       if (e.propertyName !== 'transform') return;
-      track.removeEventListener('transitionend', onEnd);
-      track.classList.add('is-panning-instant');
-      track.classList.remove('is-panning');
-      index = mod(index + 1);
-      render();
+      finished += 1;
+      if (finished < panTracks.length) return;
+
+      panTracks.forEach((panTrack) => panTrack.removeEventListener('transitionend', onEnd));
+
+      centerIndex = nextCenter;
+      slots.forEach(({ offset, currentImg, nextImg, panTrack }) => {
+        panTrack.classList.add('is-panning-instant');
+        panTrack.classList.remove('is-panning');
+        applyItemToImg(currentImg, itemAt(centerIndex, offset));
+        nextImg.removeAttribute('src');
+        nextImg.alt = '';
+      });
+
       requestAnimationFrame(() => {
-        track.classList.remove('is-panning-instant');
+        panTracks.forEach((panTrack) => panTrack.classList.remove('is-panning-instant'));
         panning = false;
       });
+
+      if (status) {
+        status.textContent = `Showing ${items[centerIndex].alt} (${centerIndex + 1} of ${len})`;
+      }
     };
 
-    track.addEventListener('transitionend', onEnd);
+    panTracks.forEach((panTrack) => panTrack.addEventListener('transitionend', onEnd));
   };
 
   const advance = reducedMotion ? advanceInstant : advanceWithPan;
@@ -232,5 +263,45 @@ function initClientCarousel() {
   root.addEventListener('mouseenter', () => window.clearInterval(timer));
   root.addEventListener('mouseleave', () => {
     timer = window.setInterval(advance, intervalMs);
+  });
+}
+
+/* ---------- Services page FAQ (single-open accordion) ---------- */
+function initServicesFaq() {
+  const accordion = document.getElementById('services-faq');
+  if (!accordion) return;
+
+  const items = [...accordion.querySelectorAll('.faq-item')];
+  const buttons = items.map((item) => item.querySelector('.faq-question')).filter(Boolean);
+  if (!buttons.length) return;
+
+  const closeItem = (item) => {
+    const btn = item.querySelector('.faq-question');
+    const panel = item.querySelector('.faq-answer');
+    if (!btn || !panel) return;
+    item.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+  };
+
+  const openItem = (item) => {
+    const btn = item.querySelector('.faq-question');
+    const panel = item.querySelector('.faq-answer');
+    if (!btn || !panel) return;
+    item.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+    panel.hidden = false;
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const item = button.closest('.faq-item');
+      if (!item) return;
+
+      const isOpen = button.getAttribute('aria-expanded') === 'true';
+      items.forEach(closeItem);
+
+      if (!isOpen) openItem(item);
+    });
   });
 }

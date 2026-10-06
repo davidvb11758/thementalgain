@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bake text_content/home.md paragraph blocks into index.html."""
+"""Bake text_content/about.md paragraph blocks into about.html."""
 
 from __future__ import annotations
 
@@ -8,8 +8,8 @@ import sys
 from pathlib import Path
 
 SITE_DIR = Path(__file__).resolve().parent.parent
-MD_PATH = SITE_DIR / "text_content" / "home.md"
-HTML_PATH = SITE_DIR / "index.html"
+MD_PATH = SITE_DIR / "text_content" / "about.md"
+HTML_PATH = SITE_DIR / "about.html"
 
 
 def unescape_md(raw: str) -> str:
@@ -41,7 +41,7 @@ def paragraphs_to_html(paragraphs: list[str], tag: str = "div") -> str:
     if not paragraphs:
         return ""
     parts = [inline_markdown_to_html(p) for p in paragraphs]
-    if tag in ("h2", "h3"):
+    if tag in ("h1", "h2", "h3"):
         return parts[0]
     if len(parts) == 1:
         return parts[0]
@@ -71,12 +71,6 @@ def parse_id_blocks(text: str) -> dict[str, list[str]]:
                 break
             if line.strip().startswith("*("):
                 break
-            if line.startswith("*Form label:"):
-                break
-            if line.startswith("**Links:**"):
-                break
-            if line.startswith("**Listen on:**"):
-                break
             if re.match(r"^-\s", line) and not current and not paragraphs:
                 break
             if line.strip() == "":
@@ -94,21 +88,7 @@ def parse_id_blocks(text: str) -> dict[str, list[str]]:
     return blocks
 
 
-def parse_newsletter_hints(text: str) -> dict[str, str]:
-    hints: dict[str, str] = {}
-    label = re.search(r"\*Form label:\* (.+?)(?: \*Button text:|\n\*Button text:)", text, re.DOTALL)
-    button = re.search(r"\*Button text:\* (.+?)(?: \*Success message:|\n\*Success message:)", text, re.DOTALL)
-    success = re.search(r"\*Success message:\* (.+?)(?:\n---|\n## |\Z)", text, re.DOTALL)
-    if label:
-        hints["placeholder"] = unescape_md(label.group(1).strip())
-    if button:
-        hints["button"] = unescape_md(button.group(1).strip())
-    if success:
-        hints["success"] = unescape_md(success.group(1).strip())
-    return hints
-
-
-def fill_html(html: str, blocks: dict[str, list[str]], hints: dict[str, str]) -> str:
+def fill_html(html: str, blocks: dict[str, list[str]]) -> str:
     def replace_by_id(match: re.Match[str]) -> str:
         tag = match.group(1)
         attrs = match.group(2)
@@ -119,60 +99,23 @@ def fill_html(html: str, blocks: dict[str, list[str]], hints: dict[str, str]) ->
         inner = paragraphs_to_html(paragraphs, tag)
         return f"<{tag}{attrs}>{inner}</{tag}>"
 
-    html = re.sub(
-        r'<(div|h2)([^>]* id="(home-[^"]+)"[^>]*)>.*?</\1>',
+    return re.sub(
+        r'<(div|h1|h2|h3)([^>]* id="((?:about|social)-[^"]+)"[^>]*)>.*?</\1>',
         replace_by_id,
         html,
         flags=re.DOTALL,
     )
-
-    if "placeholder" in hints:
-        html = re.sub(
-            r'(<input type="email" id="newsletter-email"[^>]*placeholder=")[^"]*(")',
-            rf"\1{hints['placeholder']}\2",
-            html,
-            count=1,
-        )
-    if "button" in hints:
-        html = re.sub(
-            r"(<form class=\"newsletter\" id=\"newsletter-form\"[^>]*>.*?<button type=\"submit\">)[^<]*(</button>)",
-            rf"\1{hints['button']}\2",
-            html,
-            count=1,
-            flags=re.DOTALL,
-        )
-    if "success" in hints:
-        esc = hints["success"].replace("&", "&amp;").replace('"', "&quot;")
-        if "data-newsletter-success=" in html:
-            html = re.sub(
-                r'data-newsletter-success="[^"]*"',
-                f'data-newsletter-success="{esc}"',
-                html,
-                count=1,
-            )
-        else:
-            html = re.sub(
-                r'(<html lang="en")',
-                rf'\1 data-newsletter-success="{esc}"',
-                html,
-                count=1,
-            )
-
-    return html
 
 
 def main() -> int:
     md = MD_PATH.read_text(encoding="utf-8")
     html = HTML_PATH.read_text(encoding="utf-8")
     blocks = parse_id_blocks(md)
-    hints = parse_newsletter_hints(md)
-    updated = fill_html(html, blocks, hints)
+    updated = fill_html(html, blocks)
     if updated == html:
-        print("No changes (check IDs in home.md match index.html).", file=sys.stderr)
+        print("No changes (check IDs in about.md match about.html).", file=sys.stderr)
     HTML_PATH.write_text(updated, encoding="utf-8", newline="\n")
     print(f"Rendered {len(blocks)} blocks from {MD_PATH.name} into {HTML_PATH.name}")
-    if hints:
-        print(f"Newsletter hints: {', '.join(hints.keys())}")
     return 0
 
 
