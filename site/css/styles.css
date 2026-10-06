@@ -93,7 +93,8 @@ h1, h2, h3, h4 {
 .book-me-page #content,
 .about-page #content,
 .social-page #content,
-.contact-page #content {
+.contact-page #content,
+.my-clients-page #content {
   padding-top: 0;
 }
 
@@ -288,6 +289,7 @@ h1, h2, h3, h4 {
 
 .splash-subheading {
   margin: 0;
+  font-family: var(--font-heading);
   font-size: clamp(1.35rem, 5vw, 3rem);
   font-weight: 400;
   line-height: 1.2;
@@ -398,25 +400,8 @@ h1, h2, h3, h4 {
   max-width: 820px;
 }
 
-.welcome-tmg-title {
-  font-family: var(--font-heading);
-  font-size: clamp(2rem, 4.5vw, 2.75rem);
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
-  margin: 0 0 clamp(24px, 4vw, 36px);
-  color: #ffffff;
-  text-shadow: 0 2px 24px rgb(0 0 0 / 0.35);
-}
-
-.welcome-tmg-title::after {
-  content: "";
-  display: block;
-  width: min(96px, 18vw);
-  height: 4px;
-  margin-top: 18px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #abddf7, #4057a1);
+.welcome-tmg .section-title {
+  margin-bottom: clamp(24px, 4vw, 36px);
 }
 
 .welcome-tmg-body {
@@ -457,6 +442,11 @@ h1, h2, h3, h4 {
 .about-cmpc {
   padding-block: 72px 88px;
   background: #ffffff;
+}
+
+.about-story .section-title,
+.about-cmpc .section-title {
+  margin-bottom: clamp(32px, 5vw, 48px);
 }
 
 .about-cmpc {
@@ -598,16 +588,6 @@ h1, h2, h3, h4 {
   z-index: 1;
 }
 
-.newsletter-column h2 {
-  font-size: 28px;
-  line-height: 1.35;
-  margin: 0 0 20px;
-}
-
-.newsletter-column--signup h2 {
-  color: #4057a1;
-}
-
 .newsletter-column--signup .rich-text {
   color: #25283d;
   margin-bottom: 24px;
@@ -627,8 +607,7 @@ h1, h2, h3, h4 {
   color: #abddf7;
 }
 
-.newsletter-column--contact h2 {
-  color: #fff;
+.newsletter-column--contact .section-title {
   margin-bottom: 12px;
 }
 
@@ -688,7 +667,82 @@ h1, h2, h3, h4 {
   }
 }
 
-/* ---------- Section headings ---------- */
+/* ---------- Section titles (canonical — see Section Title example.png) ---------- */
+.section-title {
+  margin: 0 0 20px;
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.25;
+  color: #17213c;
+  text-align: center;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: min(88px, 16vw);
+  height: 4px;
+  margin: 16px auto 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #4057a1, #abddf7);
+}
+
+.section-title--start {
+  text-align: start;
+}
+
+.section-title--start::after {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.section-title--on-dark {
+  color: #ffffff;
+  text-shadow: 0 2px 24px rgb(0 0 0 / 0.35);
+}
+
+.section-title--on-dark::after {
+  background: linear-gradient(90deg, #abddf7, #4057a1);
+}
+
+.section-title--spaced {
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+
+.section-title--spaced-lg {
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+.clients--showcase .section-title,
+.services--showcase .section-title {
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+.service-split-body .section-title {
+  margin-bottom: 20px;
+}
+
+/* Legacy alias */
+.social-page-title {
+  margin: 0 0 20px;
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 400;
+  color: #17213c;
+  text-align: center;
+}
+
+.social-page-title::after {
+  content: "";
+  display: block;
+  width: min(88px, 16vw);
+  height: 4px;
+  margin: 16px auto 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #4057a1, #abddf7);
+}
+
 .social-section h2,
 .podcast-section h2 {
   font-size: 28px;
@@ -724,27 +778,6 @@ h1, h2, h3, h4 {
   width: 100%;
   max-width: 1440px;
   margin-inline: auto;
-}
-
-.services-showcase-title {
-  margin: 0 0 clamp(48px, 6vw, 72px);
-  font-size: clamp(2.75rem, 6vw, 4.25rem);
-  line-height: 1.1;
-  font-weight: 400;
-  text-align: center;
-  color: #fff;
-  letter-spacing: 0.02em;
-  text-shadow: 0 4px 24px rgb(0 0 0 / 0.35);
-}
-
-.services-showcase-title::after {
-  content: "";
-  display: block;
-  width: min(120px, 20vw);
-  height: 4px;
-  margin: 20px auto 0;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #4057a1, #abddf7);
 }
 
 .service-stairstep {
@@ -996,27 +1029,6 @@ h1, h2, h3, h4 {
   padding-block: 72px 88px;
 }
 
-.clients--showcase .clients-showcase-title {
-  margin: 0 0 clamp(48px, 6vw, 72px);
-  font-size: clamp(2.75rem, 6vw, 4.25rem);
-  line-height: 1.1;
-  font-weight: 400;
-  text-align: center;
-  color: #17213c;
-  letter-spacing: 0.02em;
-  text-shadow: 0 2px 20px rgb(64 87 161 / 0.2);
-}
-
-.clients--showcase .clients-showcase-title::after {
-  content: "";
-  display: block;
-  width: min(120px, 20vw);
-  height: 4px;
-  margin: 20px auto 0;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #4057a1, #abddf7);
-}
-
 .client-carousel {
   --client-large-w: 325px;
   --client-large-h: 225px;
@@ -1247,7 +1259,7 @@ h1, h2, h3, h4 {
 }
 @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr; gap: 40px; } }
 
-.footer-cta h2 { font-size: 28px; line-height: 1.4; margin-bottom: 20px; }
+.footer-cta .section-title { margin-bottom: 20px; }
 .footer-cta p  { font-size: 17px; margin: 0 0 30px; }
 
 .btn-light {
@@ -1393,7 +1405,6 @@ h1, h2, h3, h4 {
   background: rgba(245, 243, 242, 0.5);
 }
 
-.service-split-body h2,
 .service-split-body h3.service-heading-h3 {
   font-size: 28px;
   line-height: 1.35;
@@ -1443,10 +1454,8 @@ h1, h2, h3, h4 {
   background: var(--base);
 }
 
-.services-page .page-cta h2 {
-  font-size: 28px;
-  margin: 0 0 16px;
-  color: var(--contrast-3);
+.services-page .page-cta .section-title {
+  margin-bottom: 16px;
 }
 
 .services-page .btn-primary {
@@ -1560,24 +1569,6 @@ h1, h2, h3, h4 {
   background: linear-gradient(180deg, #ffffff 0%, #f5f4fa 100%);
   border-bottom: 1px solid rgb(37 40 61 / 0.08);
   text-align: center;
-}
-
-.social-page-title {
-  margin: 0 0 20px;
-  font-family: var(--font-heading);
-  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
-  font-weight: 400;
-  color: #17213c;
-}
-
-.social-page-title::after {
-  content: "";
-  display: block;
-  width: min(88px, 16vw);
-  height: 4px;
-  margin: 16px auto 0;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #4057a1, #abddf7);
 }
 
 .social-intro-lead {
@@ -1757,9 +1748,8 @@ h1, h2, h3, h4 {
 
 /* ---------- Contact page ---------- */
 .contact-splash-tagline {
-  max-width: 28ch;
+  max-width: min(32ch, 92vw);
   margin-inline: auto;
-  font-size: clamp(1.15rem, 3.2vw, 1.65rem);
 }
 
 .contact-main {
@@ -1774,12 +1764,8 @@ h1, h2, h3, h4 {
   align-items: start;
 }
 
-.contact-info h2 {
-  margin: 0 0 20px;
-  font-family: var(--font-heading);
-  font-size: clamp(1.75rem, 3vw, 2.125rem);
-  font-weight: 400;
-  color: #17213c;
+.contact-info .section-title {
+  margin-bottom: 20px;
 }
 
 .contact-lead {
@@ -1971,6 +1957,202 @@ h1, h2, h3, h4 {
   }
 }
 
+/* ---------- My Clients page ---------- */
+.my-clients-section {
+  padding-block: clamp(56px, 7vw, 88px);
+}
+
+.my-clients-section .section-title {
+  margin-bottom: clamp(16px, 3vw, 24px);
+}
+
+.my-clients-section-lead {
+  max-width: 42rem;
+  margin: 0 auto 36px;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #25283d;
+}
+
+.my-clients-testimonials {
+  background: #ffffff;
+}
+
+.my-clients-schools {
+  background: linear-gradient(180deg, #f5f4fa 0%, #ffffff 100%);
+}
+
+.my-clients-individuals {
+  background: #17213c;
+  color: #f5f4fa;
+}
+
+.my-clients-individuals .section-title--on-dark::after {
+  background: linear-gradient(90deg, #abddf7, #ffffff);
+}
+
+.my-clients-individuals-intro {
+  max-width: 40rem;
+  margin: 0 auto 12px;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #f5f4fa;
+}
+
+.my-clients-confidentiality {
+  margin: 0 auto 32px;
+  max-width: 36rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: rgb(245 244 250 / 0.85);
+}
+
+.testimonial-mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.5vw, 24px);
+  align-items: start;
+}
+
+.testimonial-card {
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f5f4fa;
+  box-shadow: 0 10px 32px rgb(23 33 60 / 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.testimonial-card--offset {
+  margin-top: clamp(0px, 3vw, 28px);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgb(64 87 161 / 0.22);
+}
+
+.testimonial-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.school-logo-mosaic {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 22px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.school-logo-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(14px, 2vw, 22px);
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid rgb(64 87 161 / 0.12);
+  box-shadow: 0 6px 20px rgb(23 33 60 / 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.school-logo-tile:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 28px rgb(64 87 161 / 0.15);
+}
+
+.school-logo-tile img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  object-fit: contain;
+}
+
+.school-logo-tile--wide {
+  grid-column: span 2;
+}
+
+.school-logo-tile--tall {
+  grid-row: span 2;
+  padding-block: clamp(24px, 4vw, 36px);
+}
+
+.individual-client-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  gap: 12px 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 920px;
+  margin-inline: auto;
+}
+
+.individual-client-chip {
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
+  color: #17213c;
+  background: linear-gradient(135deg, #abddf7 0%, #ffffff 100%);
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.15);
+  transition: transform 0.2s ease;
+}
+
+.individual-client-chip:nth-child(3n + 2) {
+  background: linear-gradient(135deg, #ffffff 0%, #abddf7 100%);
+}
+
+.individual-client-chip:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .testimonial-mosaic {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .testimonial-card--offset {
+    margin-top: 0;
+  }
+
+  .testimonial-card:nth-child(even) {
+    margin-top: 18px;
+  }
+
+  .school-logo-mosaic {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .school-logo-tile--wide {
+    grid-column: span 2;
+  }
+
+  .school-logo-tile--tall {
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 520px) {
+  .testimonial-mosaic {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial-card:nth-child(even) {
+    margin-top: 0;
+  }
+
+  .school-logo-tile--wide {
+    grid-column: span 1;
+  }
+}
+
 /* ---------- Services FAQ accordion ---------- */
 .services-page .faq-section {
   padding-block: 56px 72px;
@@ -1982,24 +2164,8 @@ h1, h2, h3, h4 {
   max-width: 760px;
 }
 
-.services-page .faq-heading {
-  margin: 0 0 32px;
-  font-family: var(--font-heading);
-  font-size: clamp(1.75rem, 3.5vw, 2.125rem);
-  font-weight: 400;
-  line-height: 1.25;
-  color: #17213c;
-  text-align: center;
-}
-
-.services-page .faq-heading::after {
-  content: "";
-  display: block;
-  width: min(88px, 16vw);
-  height: 4px;
-  margin: 16px auto 0;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #4057a1, #abddf7);
+.services-page .faq-section .section-title {
+  margin-bottom: 32px;
 }
 
 .services-page .faq-accordion {
