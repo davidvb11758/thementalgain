@@ -221,7 +221,7 @@
       </div>
     </section>
 
-    <!-- [Signup for newsletter] + Contact — layout only (no backend yet) -->
+    <!-- [Signup for newsletter] + Contact -->
     <section class="newsletter-section home-blue-band" aria-labelledby="newsletter-heading">
       <div class="container newsletter-inner">
         <div class="newsletter-split">
@@ -229,12 +229,20 @@
             <h2 id="newsletter-heading" class="section-title section-title--start">Newsletter</h2>
             <div class="rich-text" id="home-newsletter-p1"><em>Join our subscribers to learn more information about The Mental Gain.</em></div>
 
-            <form class="newsletter" id="newsletter-form" novalidate data-layout-only="true" aria-label="Newsletter signup (coming soon)">
-              <label class="sr-only" for="newsletter-email">Email address</label>
-              <input type="email" id="newsletter-email" name="email" placeholder="Enter your email..." autocomplete="email" disabled aria-disabled="true">
+            <form class="newsletter" id="newsletter-form" action="https://api.web3forms.com/submit" method="POST" novalidate aria-label="Newsletter signup">
+              <input type="hidden" name="access_key" value="41993903-d349-4416-9811-8df9c21faa19">
+              <input type="hidden" name="subject" value="Newsletter signup — The Mental Gain">
+              <input type="hidden" name="from_name" value="The Mental Gain Website">
 
-              <button type="button" disabled aria-disabled="true">Send Message</button>
-              <p class="form-layout-note">Signup will be available soon.</p>
+              <div class="hp" aria-hidden="true">
+                <label>Leave this field empty <input type="text" name="botcheck" tabindex="-1" autocomplete="off"></label>
+              </div>
+
+              <label class="sr-only" for="newsletter-email">Email address</label>
+              <input type="email" id="newsletter-email" name="email" placeholder="Enter your email..." autocomplete="email" required>
+
+              <button type="submit">Send Message</button>
+              <p class="form-status" id="newsletter-status" role="status" aria-live="polite"></p>
             </form>
           </div>
 

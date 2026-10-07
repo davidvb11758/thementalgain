@@ -3,17 +3,6 @@
    Vanilla JS, no dependencies.
    ========================================================= */
 
-/* ---------------------------------------------------------
-   CONFIG
-   Where the newsletter form posts to.
-   - Leave '' while piloting: the form validates and shows a
-     "not connected yet" message (nothing is sent anywhere).
-   - To go live, paste a Formspree / MailerLite / Buttondown
-     endpoint that accepts a JSON POST, e.g.
-       'https://formspree.io/f/xxxxxxxx'
-   --------------------------------------------------------- */
-const NEWSLETTER_ENDPOINT = '';
-
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initBackToTop();
@@ -97,13 +86,11 @@ function initBackToTop() {
   });
 }
 
-/* ---------- Newsletter form ---------- */
+/* ---------- Newsletter form → Web3Forms (https://web3forms.com) ---------- */
 function initNewsletter() {
   const form = document.getElementById('newsletter-form');
-  if (!form || form.dataset.layoutOnly === 'true') return;
-
   const status = document.getElementById('newsletter-status');
-  if (!status) return;
+  if (!form || !status) return;
 
   const show = (msg, type) => {
     status.textContent = msg;
@@ -113,18 +100,19 @@ function initNewsletter() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const email = form.elements.email.value.trim();
-    const honeypot = form.elements.website.value;
+    const botcheck = form.elements.botcheck?.value?.trim();
+    if (botcheck) return;
 
-    if (honeypot) return;                                   // bot – silently ignore
+    const email = form.elements.email.value.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       show('Please enter a valid email address.', 'error');
       form.elements.email.focus();
       return;
     }
 
-    if (!NEWSLETTER_ENDPOINT) {
-      show('Pilot mode: the signup form is not connected to an email service yet.', 'error');
+    const accessKey = form.querySelector('input[name="access_key"]')?.value?.trim();
+    if (!accessKey) {
+      show('Newsletter form is not connected yet.', 'error');
       return;
     }
 
@@ -133,12 +121,15 @@ function initNewsletter() {
     show('Sending…');
 
     try {
-      const res = await fetch(NEWSLETTER_ENDPOINT, {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ email }),
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
       });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || 'Submission failed');
+      }
       form.reset();
       show(newsletterSuccessMessage(), 'success');
     } catch (err) {
