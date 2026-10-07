@@ -1,10 +1,11 @@
 # SERVICES PAGE – Text Content
 
 > **Notes for the reader of this doc**
-> - Source: [Services (page_id=3539)](https://thementalgain.com/?page_id=3539) — text + **photo** panels (from GenerateBlocks backgrounds).
-> - **Paragraph IDs:** `**ID:**` → `<div id="...">` in `services.html`.
-> - **Image IDs:** `**Image ID:**` + **Image file:** → `<img>` in `services.html` (files in `images/services/`).
-> - No SVG icons on this page (photos only, matching live layout).
+
+> - Source: [Services (page\_id=3539)](https://thementalgain.com/?page_id=3539) — text \+ **photo** panels (from GenerateBlocks backgrounds).  
+> - **Paragraph IDs:** `**ID:**` → `<div id="...">` in `services.html`.  
+> - **Image IDs:** `**Image ID:**` \+ **Image file:** → `<img>` in `services.html` (files in `images/services/`).  
+> - No SVG icons on this page (photos only, matching live layout).  
 > - Run `python scripts/render_services_from_md.py` after text edits.
 
 ---
@@ -21,13 +22,11 @@ Have Sabrina meet with an individual athlete, or an entire team. During the sess
 
 ---
 
-## \[service 1 description & link to --service 1\]
+## \[service 1 description & link to \--service 1\]
 
 *(Live layout: photo left, copy right.)*
 
-**Image ID:** `services-image-initial-consultation`
-**Image file (listing):** `images/services/2022-player-injury-645x280.png` — full: `2022-player-injury-500b.png` (detail page)
-**Image alt:** Athlete sitting on court after an injury, head in hands
+**Image ID:** `services-image-initial-consultation` **Image file (listing):** `images/services/2022-player-injury-645x280.png` — full: `2022-player-injury-500b.png` (detail page) **Image alt:** Athlete sitting on court after an injury, head in hands
 
 ### Initial Consultation
 
@@ -45,13 +44,11 @@ Sessions can be online or in-person.
 
 ---
 
-## \[service 2 description & link to --service 2\]
+## \[service 2 description & link to \--service 2\]
 
 *(Live layout: copy left, photo right.)*
 
-**Image ID:** `services-image-individual-sessions`
-**Image file (listing):** `images/services/17r-raina-jump-joy-645x280.jpg` — full: `17r-raina-jump-joy-650.jpg` (detail page)
-**Image alt:** Volleyball player jumping with joy
+**Image ID:** `services-image-individual-sessions` **Image file (listing):** `images/services/17r-raina-jump-joy-645x280.jpg` — full: `17r-raina-jump-joy-650.jpg` (detail page) **Image alt:** Volleyball player jumping with joy
 
 ### Individual Sessions
 
@@ -65,13 +62,11 @@ Sessions can be online or in-person. There is no long-term commitment required.
 
 ---
 
-## \[service 3 description & link to --service 3\]
+## \[service 3 description & link to \--service 3\]
 
 *(Live layout: photo left, copy right.)*
 
-**Image ID:** `services-image-online-modules`
-**Image file (listing):** `images/services/Rockets3Players-645x280.png` — full: `Rockets3Players1a.png` (detail page)
-**Image alt:** Three Rockets volleyball players together on court
+**Image ID:** `services-image-online-modules` **Image file (listing):** `images/services/Rockets3Players-645x280.png` — full: `Rockets3Players1a.png` (detail page) **Image alt:** Three Rockets volleyball players together on court
 
 ### Online Learning Modules
 
@@ -85,19 +80,17 @@ Choose from many modules to target your specific needs.
 
 ---
 
-## \[service 4 description & link to --service 4\]
+## \[service 4 description & link to \--service 4\]
 
 *(Live layout: copy left, photo right; live page uses `h3` for heading.)*
 
-**Image ID:** `services-image-team-sessions`
-**Image file (listing):** `images/services/2022-team-celebrate-645x280.png` — full: `2022-team-celebrate-500b.png` (detail page)
-**Image alt:** Team celebrating together
+**Image ID:** `services-image-team-sessions` **Image file (listing):** `images/services/2022-team-celebrate-645x280.png` — full: `2022-team-celebrate-500b.png` (detail page) **Image alt:** Team celebrating together
 
 ### Team Sessions
 
 **ID:** `services-team-sessions-p1`
 
-Coaches can choose for these sessions to be in-person or virtual. We will address the team's needs, learn mental skills, and *grow as a group*! Team sessions are customized based on each team's needs. Common topics are communication, resiliency, performing under pressure, maximizing team performance, goals, and much more!
+Coaches can choose for these sessions to be in-person or virtual. We will address the team's needs, learn mental skills, and *grow as a group*\! Team sessions are customized based on each team's needs. Common topics are communication, resiliency, performing under pressure, maximizing team performance, goals, and much more\!
 
 **ID:** `services-team-sessions-p2`
 
@@ -112,3 +105,21 @@ Sessions can be online or in-person. There is no long-term commitment required.
 **ID:** `services-cta-p1`
 
 Take the first step toward improved mental performance. This isn't a traditional "get tougher" conversation. We can discuss where you are and where you want to be. Everybody's journey is different. Together let's explore you and your situation. The time is right for you to improve your **MENTAL** game – what do **YOU** have to **GAIN**?
+
+---
+
+## \[ Confidentiality statement\]
+
+### Confidentialty & Privacy
+
+**ID:** `services-confid-p1`
+
+Sabrina has worked within the Atlanta volleyball community for more than seven years and understands the importance of maintaining complete professionalism and confidentiality. Throughout that time, she has maintained a strong record of protecting the privacy and confidentiality of her clients.
+
+**ID:** `services-confid-p2`
+
+**All client relationships are confidential.** Confidentiality is a professional and ethical commitment outlined within the Association for Applied Sport Psychology’s ethical standards that Sabrina follows as a Certified Mental Performance Consultant® (CMPC). **The Mental Gain does not disclose the identity of its clients** or confirm whether an individual is currently or has previously worked with Sabrina. Session discussions, performance concerns, progress, and other details related to services are also kept private and are not shared with coaches or other third parties. For clients under the age of 18, general information or progress may be shared with a parent or legal guardian outside of sessions.
+
+**ID:** `services-confid-p3`
+
+The Mental Gain provides **mental performance consulting**, helping athletes, teams, coaches, and performers develop mental skills for performance optimization. Mental health treatment, counseling, and psychotherapy are outside the scope of services provided by The Mental Gain.

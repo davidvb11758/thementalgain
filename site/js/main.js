@@ -67,6 +67,7 @@ function initMobileMenu() {
   const setOpen = (open) => {
     toggle.setAttribute('aria-expanded', String(open));
     nav.classList.toggle('is-open', open);
+    document.body.classList.toggle('mobile-nav-open', open);
   };
 
   toggle.addEventListener('click', () => {
@@ -175,15 +176,28 @@ function initClientCarousel() {
   let centerIndex = 0;
   const len = items.length;
   let panning = false;
+  let loopTimer = null;
+  const pauseMs = 2000;
 
   const mod = (i) => ((i % len) + len) % len;
 
   const itemAt = (center, offset) => items[mod(center + offset)];
 
+  const isSlotVisible = (slotEl) => {
+    if (!slotEl) return false;
+    return window.getComputedStyle(slotEl).display !== 'none';
+  };
+
   const applyItemToImg = (img, item) => {
     if (!img || !item) return;
     img.src = item.src;
     img.alt = item.alt;
+  };
+
+  const updateStatus = () => {
+    if (status) {
+      status.textContent = `Showing ${items[centerIndex].alt} (${centerIndex + 1} of ${len})`;
+    }
   };
 
   const render = () => {
@@ -195,75 +209,107 @@ function initClientCarousel() {
       nextImg.setAttribute('aria-hidden', 'true');
       slotEl.querySelector('.client-carousel-pan-track')?.classList.remove('is-panning', 'is-panning-instant');
     });
-    if (status) {
-      status.textContent = `Showing ${items[centerIndex].alt} (${centerIndex + 1} of ${len})`;
-    }
+    updateStatus();
   };
 
   render();
 
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const advanceInstant = () => {
-    centerIndex = mod(centerIndex + 1);
-    render();
+  const clearLoopTimer = () => {
+    if (loopTimer !== null) {
+      window.clearTimeout(loopTimer);
+      loopTimer = null;
+    }
   };
 
-  const advanceWithPan = () => {
+  const scheduleNext = () => {
+    clearLoopTimer();
     if (panning) return;
-    panning = true;
-    const nextCenter = mod(centerIndex + 1);
+    loopTimer = window.setTimeout(runAdvance, pauseMs);
+  };
 
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const finishPan = (nextCenter, animatedTracks) => {
+    centerIndex = nextCenter;
     slots.forEach(({ offset, currentImg, nextImg, panTrack }) => {
-      applyItemToImg(nextImg, itemAt(nextCenter, offset));
-      panTrack.classList.remove('is-panning-instant', 'is-panning');
+      panTrack.classList.add('is-panning-instant');
+      panTrack.classList.remove('is-panning');
+      applyItemToImg(currentImg, itemAt(centerIndex, offset));
+      nextImg.removeAttribute('src');
+      nextImg.alt = '';
     });
 
     requestAnimationFrame(() => {
-      slots.forEach(({ panTrack }) => panTrack.classList.add('is-panning'));
+      animatedTracks.forEach((panTrack) => panTrack.classList.remove('is-panning-instant'));
+      panning = false;
+      updateStatus();
+      scheduleNext();
+    });
+  };
+
+  const runAdvance = () => {
+    loopTimer = null;
+    if (panning) return;
+
+    if (reducedMotion) {
+      centerIndex = mod(centerIndex + 1);
+      render();
+      scheduleNext();
+      return;
+    }
+
+    panning = true;
+    const nextCenter = mod(centerIndex + 1);
+    const animatedSlots = slots.filter(({ slotEl }) => isSlotVisible(slotEl));
+
+    slots.forEach(({ offset, nextImg, panTrack, slotEl }) => {
+      panTrack.classList.remove('is-panning-instant', 'is-panning');
+      if (!isSlotVisible(slotEl)) return;
+      applyItemToImg(nextImg, itemAt(nextCenter, offset));
     });
 
-    const panTracks = slots.map((s) => s.panTrack);
+    if (!animatedSlots.length) {
+      finishPan(nextCenter, []);
+      return;
+    }
+
+    const panTracks = animatedSlots.map((s) => s.panTrack);
     let finished = 0;
+    let settled = false;
+
+    const settle = () => {
+      if (settled) return;
+      settled = true;
+      window.clearTimeout(fallbackTimer);
+      panTracks.forEach((panTrack) => panTrack.removeEventListener('transitionend', onEnd));
+      finishPan(nextCenter, panTracks);
+    };
 
     const onEnd = (e) => {
       if (e.propertyName !== 'transform') return;
       finished += 1;
       if (finished < panTracks.length) return;
-
-      panTracks.forEach((panTrack) => panTrack.removeEventListener('transitionend', onEnd));
-
-      centerIndex = nextCenter;
-      slots.forEach(({ offset, currentImg, nextImg, panTrack }) => {
-        panTrack.classList.add('is-panning-instant');
-        panTrack.classList.remove('is-panning');
-        applyItemToImg(currentImg, itemAt(centerIndex, offset));
-        nextImg.removeAttribute('src');
-        nextImg.alt = '';
-      });
-
-      requestAnimationFrame(() => {
-        panTracks.forEach((panTrack) => panTrack.classList.remove('is-panning-instant'));
-        panning = false;
-      });
-
-      if (status) {
-        status.textContent = `Showing ${items[centerIndex].alt} (${centerIndex + 1} of ${len})`;
-      }
+      settle();
     };
+
+    const fallbackTimer = window.setTimeout(settle, 900);
+
+    requestAnimationFrame(() => {
+      panTracks.forEach((panTrack) => panTrack.classList.add('is-panning'));
+    });
 
     panTracks.forEach((panTrack) => panTrack.addEventListener('transitionend', onEnd));
   };
 
-  const advance = reducedMotion ? advanceInstant : advanceWithPan;
-
-  const intervalMs = 2000;
-  let timer = window.setInterval(advance, intervalMs);
-
-  root.addEventListener('mouseenter', () => window.clearInterval(timer));
-  root.addEventListener('mouseleave', () => {
-    timer = window.setInterval(advance, intervalMs);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      clearLoopTimer();
+      return;
+    }
+    scheduleNext();
   });
+
+  scheduleNext();
 }
 
 /* ---------- Services page FAQ (single-open accordion) ---------- */

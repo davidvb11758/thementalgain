@@ -4,7 +4,7 @@
 
 > - Source: homepage scraped from [thementalgain.com](https://thementalgain.com/) (WordPress / GeneratePress).  
 > - Sections match **main page body** only (not site header, footer, or navigation).  
-> - Sections **not** on the live homepage as of this scrape: TheMentalGain overview, social media block, podcast block (planned in `TMG site layout.txt`).  
+> - Sections **not** on the live homepage as of this scrape: The Mental Gain overview, social media block, podcast block (planned in `TMG site layout.txt`).  
 > - **Paragraph IDs:** every paragraph is preceded by an `ID:` line. Use as the `id` of the matching `<div>` in `index.html`.  
 > - ID pattern: `home-*` (lowercase, hyphens). Keep unique across the site.  
 > - After editing, run `python scripts/render_home_from_md.py` from the `site` folder to bake copy into `index.html`.
@@ -13,7 +13,7 @@
 
 ## \[SPLASH\]
 
-Full-width image: `images/Xtream_whole_arena.png`. Headlines are static in `index.html` (not loaded from markdown):
+Full-width image: `images/Sabrina Mountain 2b expand1920.png`. Headlines are static in `index.html` (not loaded from markdown):
 
 - **H2:** Promoting Healthy Minds and Peak Performance
 - **H3:** What do you have to gain?
@@ -24,7 +24,9 @@ Full-width image: `images/Xtream_whole_arena.png`. Headlines are static in `inde
 
 **ID:** `home-welcome-title`
 
-Welcome to TheMentalGain
+Welcome to The Mental Gain
+
+*(Section photo: `images/Sabrina welcome 400.JPG` — fixed in HTML, left of body.)*
 
 **ID:** `home-welcome-body`
 
@@ -78,4 +80,4 @@ Team success is more than just players.
 
 ### My Clients
 
-*(Nine client PNGs (325×225) in `#client-carousel-source` on `index.html`; carousel shows prev / center / next, advances every 2s.)*
+*(Twelve client logos (`images/myclients/* logo 400`) in `#client-carousel-source` on `index.html`; carousel shows prev / center / next, advances every 2s.)*

@@ -11,13 +11,13 @@
 
 **ID:** `about-header-statement`
 
-Get to know more about TheMentalGain
+Get to know more about The Mental Gain
 
 ---
 
 ## \[My Story\]
 
-*(Section photo: `images/Sabrina.png` — fixed in HTML.)*
+*(Section photo: `images/sabrina maroon.jpg` — fixed in HTML.)*
 
 **ID:** `about-my-story-title`
 
