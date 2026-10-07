@@ -1,5 +1,5 @@
-# Cloudflare Pages — Astro static build output
+# Cloudflare Pages — static pilot in site/ (switch to dist when Astro replaces it)
 # https://developers.cloudflare.com/pages/
 name = "thementalgain"
 compatibility_date = "2024-11-01"
-pages_build_output_dir = "dist"
+pages_build_output_dir = "site"

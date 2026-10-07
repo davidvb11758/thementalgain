@@ -12,3 +12,6 @@ Thumbs.db
 # Optional local editor
 .vscode/
 .idea/
+
+~*.docx
+orig-images-gitignore/

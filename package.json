@@ -11,7 +11,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "npm run build && npx wrangler pages deploy dist --project-name=thementalgain",
+    "bake:site": "python site/scripts/bake_all_from_md.py",
+    "deploy": "npm run bake:site && npx wrangler pages deploy site --project-name=thementalgain",
+    "deploy:only": "npx wrangler pages deploy site --project-name=thementalgain",
     "legacy:render-home": "python site/scripts/render_home_from_md.py || python legacy/pilot-site/scripts/render_home_from_md.py"
   },
   "dependencies": {

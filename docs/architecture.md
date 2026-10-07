@@ -42,7 +42,7 @@ src/
 
 - **Build:** `npm run build` → `dist/`
 - **Cloudflare Pages:** build command `npm run build`, output directory `dist`
-- **Wrangler CLI:** `npm run deploy`
+- **Wrangler CLI:** `npm run deploy` (runs `site/scripts/bake_all_from_md.py` first, then uploads `site/`)
 
 ## Legacy pilot
 

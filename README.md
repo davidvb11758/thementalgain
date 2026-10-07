@@ -19,7 +19,9 @@ Open [http://localhost:4321](http://localhost:4321).
 ```bash
 npm run build    # output → dist/
 npm run preview  # preview production build locally
-npm run deploy   # build + wrangler pages deploy (after wrangler login)
+npm run deploy   # bake site/*.md into HTML, then wrangler pages deploy (after wrangler login)
+npm run bake:site   # Markdown → HTML only (no upload)
+npm run deploy:only # upload site/ without re-baking
 ```
 
 ## Project layout
@@ -74,11 +76,15 @@ Edit **`src/styles/global.css`** → `@theme { --color-tmg-* … }` to match. Do
 
 ## Deploy (Cloudflare Pages)
 
+**Static pilot (`site/`):** from repo root, `npm run deploy` runs all Python bake scripts under `site/scripts/` (home, about, services, service details), then uploads `site/` with Wrangler.
+
 | Setting | Value |
 |---------|--------|
-| Build command | `npm run build` |
-| Build output directory | `dist` |
-| Node version | 22+ |
+| CLI deploy | `npm run deploy` |
+| Build output directory | `site` |
+| Node version | 22+ (Python 3 required for bake) |
+
+**Future Astro (`dist/`):** `npm run build` → output `dist/`; Pages Git build can use that when Astro replaces the pilot.
 
 Connect custom domain **thementalgain.com** in the Pages project. Keep **master.thementalgain.com** DNS pointing to InMotion if that subdomain stays on WordPress.
 
@@ -105,3 +111,5 @@ The earlier single-page HTML site lives under `legacy/pilot-site/` (and may stil
 - [docs/requirements-summary.md](docs/requirements-summary.md)
 - [docs/sitemap.md](docs/sitemap.md)
 - [docs/architecture.md](docs/architecture.md)
+- [docs/review-findings.md](docs/review-findings.md) — open issues and fixes, by priority
+- [CLAUDE.md](CLAUDE.md) — how the live `site/` actually works (bake pipeline, shared header/footer, design tokens)

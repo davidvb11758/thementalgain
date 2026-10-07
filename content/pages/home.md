@@ -4,7 +4,7 @@
 > - Source: homepage scraped from [thementalgain.com](https://thementalgain.com/) (WordPress / GeneratePress).
 > - Canonical copy for static home: `site/text_content/home.md` (same content). Astro home not built yet.
 > - Sections match **main page body** only (not site header, footer, or navigation).
-> - Sections **not** on the live homepage as of this scrape: TheMentalGain overview, social media block, podcast block (planned in `TMG site layout.txt`).
+> - Sections **not** on the live homepage as of this scrape: The Mental Gain overview, social media block, podcast block (planned in `TMG site layout.txt`).
 > - **Paragraph IDs:** every paragraph is preceded by an `ID:` line. Use as the `id` of the matching `<div>` in `site/index.html`.
 
 ---

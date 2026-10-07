@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run all site Markdown → HTML bake scripts (used before Cloudflare deploy)."""
+"""Run all site bake scripts — Markdown copy and shared partials → HTML (used before Cloudflare deploy)."""
 
 from __future__ import annotations
 
@@ -14,6 +14,7 @@ BAKE_SCRIPTS = (
     "render_about_from_md.py",
     "render_services_from_md.py",
     "render_service_details_from_md.py",
+    "render_footer_from_partial.py",
 )
 
 

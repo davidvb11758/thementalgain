@@ -13,7 +13,7 @@
 
 ## \[SPLASH\]
 
-Full-width image: `images/Sabrina Mountain 2b expand1920.png`. Headlines are static in `index.html` (not loaded from markdown):
+Full-width image: `images/Sabrina Mountain 2b expand1920.jpg`. Headlines are static in `index.html` (not loaded from markdown):
 
 - **H2:** Promoting Healthy Minds and Peak Performance
 - **H3:** What do you have to gain?
