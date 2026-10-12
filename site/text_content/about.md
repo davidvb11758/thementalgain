@@ -17,7 +17,7 @@ Get to know more about The Mental Gain
 
 ## \[My Story\]
 
-*(Section photo: `images/sabrina maroon.jpg` — fixed in HTML.)*
+*(Section photo: `images/Sabrina_headshot_400.jpg` — fixed in HTML.)*
 
 **ID:** `about-my-story-title`
 

@@ -9,7 +9,7 @@ Modern, responsive staging site for **TheMentalGain.com** on Cloudflare Pages, t
 ## Must-haves
 
 - Professional performance-coaching tone (not clinical/medical, not generic corporate)
-- Astro + Tailwind + Markdown/MDX + Cloudflare Pages
+- Static HTML/CSS/vanilla JS + Markdown copy (baked by Python) + Cloudflare Pages. The docx specifies Astro + Tailwind + MDX, but Astro was dropped on 2026-10-07 in favor of the static site in `site/`.
 - Central design tokens; no hard-coded colors per page
 - Responsive (mobile-first reflow, not shrunk desktop)
 - Full-width imagery, subtle motion (respect `prefers-reduced-motion`)

@@ -1,4 +1,4 @@
-# Cloudflare Pages — static pilot in site/ (switch to dist when Astro replaces it)
+# Cloudflare Pages — the static site in site/ is uploaded as-is (no build step; run `npm run bake:site` first)
 # https://developers.cloudflare.com/pages/
 name = "thementalgain"
 compatibility_date = "2024-11-01"

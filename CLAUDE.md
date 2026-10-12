@@ -6,24 +6,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 The marketing site for The Mental Gain: Sabrina Rodgers, a Certified Mental Performance Consultant® (CMPC) who works with athletes, teams and parents. It replaces the WordPress site at thementalgain.com. `TMG rqmts.docx` is the source of truth for requirements, and `TMG site layout.txt` is the page outline.
 
-**The deployed site is the hand-written static site in `site/`.** The Astro + Tailwind project at the root (`src/`, `content/`, `public/`, `astro.config.mjs`) is an unfinished scaffold with one placeholder page and is not deployed. `README.md` and `docs/architecture.md` still describe Astro as the main stack. Treat `site/` as the real site unless the user says they are moving to Astro.
+**The site is the hand-written static site in `site/`, uploaded to Cloudflare Pages as-is.** There's no framework and no npm dependencies. An Astro + Tailwind scaffold was removed on 2026-10-07 because the user doesn't plan to use Astro. `TMG rqmts.docx` still names Astro, but the static site is the chosen approach, so don't reintroduce a framework or bundler.
 
 Open issues, ranked by priority, are tracked in `docs/review-findings.md`. Check it before changing related code, and tick items off there when you fix them.
 
 ## Commands
 
 ```bash
+npm run dev          # npx wrangler pages dev site — local preview with Cloudflare _headers
 npm run bake:site    # python site/scripts/bake_all_from_md.py — Markdown copy + footer partial → HTML, edits site/*.html in place
-npm run deploy       # bake:site, then `wrangler pages deploy site --project-name=thementalgain` (PRODUCTION)
+npm run deploy       # bake:site, then `wrangler pages deploy site --project-name=thementalgain` (public Preview, see below)
 npm run deploy:only  # upload site/ without baking
-npx wrangler pages dev site   # local preview with Cloudflare _headers; any static HTTP server on site/ also works
 ```
 
-- `npm run deploy` publishes to production. Only run it when the user asks.
-- Preview over HTTP, not `file://`: the pages `fetch()` their `text_content/*.md` at runtime.
-- The bake needs Python 3 and uses only the standard library.
+- `npm run deploy` publishes publicly. Only run it when the user asks.
+- **Preview vs Production:** Wrangler deploys under the current git branch (`main`), but the Pages project's production branch is `production`. So `npm run deploy` creates a **Preview**, served at `https://main.thementalgain.pages.dev`. `https://thementalgain.pages.dev` serves the last Production deployment, made from branch `production` on 2026-10-04.
+  - To update Production, add `--branch=production` to the deploy command, or change the production branch in the Cloudflare dashboard. Confirm with the user first.
+  - The project uses direct upload and isn't connected to Git. No custom domain is attached yet.
+- Preview over HTTP, not `file://`: the pages `fetch()` their `text_content/*.md` at runtime. Any static server on `site/` works too (for example `python -m http.server -d site`).
+- The bake needs Python 3 and uses only the standard library. Node.js is only needed to run Wrangler with `npx`; there's nothing to `npm install`.
 - There are no tests, linters or formatters. To check a bake change, run `npm run bake:site` and review `git diff site/`.
-- Astro scaffold only: `npm run dev` (port 4321) and `npm run build` (output to `dist/`). Requires Node ≥ 22.12.
 
 ## How `site/` works
 
@@ -93,13 +95,9 @@ From `.cursor/rules/tmg-design-system.mdc`, which in turn comes from `TMG Color 
 - **Fonts:** Lato for body text and UI, Lora for headings. Don't change them unless the user asks and the docx is updated.
 - **Don't add new one-off hex colors.** The older pilot teal and coral are deprecated.
 - **Watch out:** the `:root` variables in `site/css/styles.css` still hold the deprecated pilot palette, and the official colors are typed in as raw hex values (finding #11). Use the official values above, not `--accent` or `--contrast-3`.
-- **Astro scaffold:** the tokens live in `src/styles/global.css` (`@theme`, `--color-tmg-*`) and `content/config/design-tokens.json`.
 
 ## Other folders
 
-- **`docs/`:** `requirements-summary.md`, `sitemap.md` and `architecture.md`. The last two are partly stale about Astro. Also `review-findings.md`.
-- **`content/`, `src/`, `public/`:** the Astro scaffold.
-  - `content/pages/home.md` and `services.md` duplicate files in `site/text_content/`. The `site/` copies are the ones in use.
-  - `public/robots.txt` and `public/_headers` are not deployed.
+- **`docs/`:** `requirements-summary.md`, `sitemap.md`, `architecture.md` and `review-findings.md`.
 - **`legacy/pilot-site/`:** the first single-page prototype, kept for reference only.
 - **Root `.docx` files:** requirements, color palette and deploy notes. Only the user can edit these.

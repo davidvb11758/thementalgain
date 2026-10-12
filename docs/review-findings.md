@@ -1,7 +1,7 @@
 # Code review findings
 
 **Reviewed:** 2026-10-07, at commit `2200bab` plus the uncommitted changes in the working tree at that time.
-**Scope:** the live static site in `site/` (what `npm run deploy` uploads to Cloudflare Pages), its bake scripts, and repo housekeeping. The Astro scaffold (`src/`) was only checked to see whether it is in use.
+**Scope:** the live static site in `site/` (what `npm run deploy` uploads to Cloudflare Pages), its bake scripts, and repo housekeeping. (The unused Astro scaffold was removed on 2026-10-07.)
 
 Tick the box when a finding is fixed. Mark a finding *won't fix* rather than deleting it, so the reason stays on record.
 
@@ -24,12 +24,13 @@ Tick the box when a finding is fixed. Mark a finding *won't fix* rather than del
 | 13 | P2 | Contact form copy and limits |
 | 14 | P2 | Booking widget doesn't use TMG colors |
 | 15 | P2 | Year-long immutable image caching |
-| 16 | P3 | Two parallel projects; README and docs are stale |
-| 17 | P3 | Duplicate copies of content and images |
+| 16 | P3 | Two parallel projects; README and docs are stale (fixed 2026-10-07: Astro removed) |
+| 17 | P3 | Duplicate copies of content and images (mostly fixed) |
 | 18 | P3 | Git hygiene |
 | 19 | P3 | Image filenames contain spaces |
 | 20 | P3 | Small script and folder clutter |
 | 21 | P3 | Restrict the Web3Forms key to your domain |
+| 22 | P1 | No `404.html`: missing URLs return the home page with status 200 |
 
 ---
 
@@ -41,7 +42,7 @@ Tick the box when a finding is fixed. Mark a finding *won't fix* rather than del
 Three separate things tell search engines to stay away:
 - `<meta name="robots" content="noindex, nofollow">` is in all 10 pages (`site/index.html:11`, line 10 in the others).
 - `site/_headers:5-6` sends `X-Robots-Tag: noindex, nofollow` on every response.
-- `public/robots.txt` says `Disallow: /`. That file belongs to the Astro scaffold and **is not deployed**. `site/` has no `robots.txt` and no `sitemap.xml`.
+- `site/` has no `robots.txt` and no `sitemap.xml`. The Astro scaffold's `public/robots.txt` was never deployed and was removed along with the scaffold.
 
 That's correct for staging. At cutover, remove the meta tag and the header line, and add `site/robots.txt` and `site/sitemap.xml`.
 
@@ -57,7 +58,7 @@ The bug is hidden because `js/services-content.js` downloads `services.md` in th
 **Fix:** match id'd elements regardless of their content, the way `render_service_details_from_md.py:96-98` does. **Do this before #7.**
 
 ### 3. Contact form can be submitted empty
-- [ ] Fixed
+- [x] Fixed (2026-10-08: `contact-form.js` now checks name and email before sending, shows the problem in the status line, marks the field `aria-invalid` and focuses it)
 
 `site/contact.html:103` puts `novalidate` on the form, which turns off the browser's built-in checks. `site/js/contact-form.js` only checks the access key, so the `required` name and email fields are never enforced. The newsletter form in `js/main.js` does validate its email field.
 
@@ -100,6 +101,13 @@ The bug is hidden because `js/services-content.js` downloads `services.md` in th
 
 The first thing the home page loads (and its largest image) is `images/Sabrina Mountain 2b expand1920.png`, at 1.42 MB. Saved as a JPG or WebP at 1920 px it would be about 200–300 KB. Adding `srcset` with a smaller version for phones would help further. Also check the other `*-645.png` service images, which are about 0.6 MB each.
 
+### 22. No `404.html`: missing URLs return the home page with status 200
+- [ ] Fixed
+
+*Found after the 2026-10-07 deploy.* `site/` has no `404.html`, so Cloudflare Pages treats the site as a single-page app and answers every unknown URL with the home page and a **200** status. For example, `https://main.thementalgain.pages.dev/this-page-does-not-exist` returns `200 text/html`. Search engines treat these as "soft 404s" and may index junk URLs as copies of the home page. Visitors with a mistyped link land on the home page with no explanation.
+
+**Fix:** add a `site/404.html` that uses the normal header and footer (with an empty `<footer id="site-footer" class="site-footer"></footer>` the bake can fill), a short message, and links to Home, Services and Contact. With that file in place, Pages returns a real 404 status.
+
 ---
 
 ## P2: should fix
@@ -126,7 +134,7 @@ Because everything in `site/` is deployed, these are publicly downloadable:
 
 - **Header:** the full `<header>` and primary nav are copied into all 10 HTML files. A menu change means editing 10 files.
 - ~~**Footer:** `js/site-footer.js` holds the footer HTML as a string, and the comment says `partials/site-footer.html` is "the edit source; keep in sync". Nothing enforces that. The footer is also inserted by JavaScript, so it's missing for visitors without JavaScript and for some crawlers.~~ **Fixed 2026-10-07:** `js/site-footer.js` was deleted. `site/scripts/render_footer_from_partial.py` (part of `npm run bake:site`) now writes `partials/site-footer.html` into every page as plain HTML.
-- `docs/sitemap.md` says the menu and footer come from `content/config/site.json`. That's only true for the Astro scaffold.
+- ~~`docs/sitemap.md` says the menu and footer come from `content/config/site.json`.~~ **Fixed 2026-10-07:** the sitemap now describes the static site.
 
 **Fix:** do the same for the header that was done for the footer: a `site/partials/site-header.html` baked into each page, with `aria-current="page"` set for each page.
 
@@ -161,7 +169,7 @@ The official palette is in `.cursor/rules/tmg-design-system.mdc` and `TMG Color 
 In `site/contact.html`:
 - Line 114: the placeholder "Parents name" needs an apostrophe ("Parent's name").
 - Line 129: the phone example `403-555-1212` is a Canadian area code. Something like `319-555-1212` would match the business number.
-- Line 134: `maxlength="180"` is very tight for a parent describing their athlete's situation. Consider 1,000 or more.
+- Line 133: `maxlength="400"` may still be tight for a parent describing their athlete's situation. Consider 1,000 or more. (The counter used to say "/ 180"; it now reads the limit from the textarea's `maxlength`, so changing that one attribute is enough, apart from the initial `0 / 400` text in `contact.html:134`.)
 
 ### 14. Booking widget doesn't use TMG colors
 - [ ] Fixed
@@ -178,7 +186,9 @@ In `site/contact.html`:
 ## P3: housekeeping
 
 ### 16. Two parallel projects; README and docs are stale
-- [ ] Fixed
+- [x] Fixed 2026-10-07: you decided not to use Astro. These were removed: `src/`, `content/`, `public/`, `astro.config.mjs`, `tsconfig.json`, `.env.example`, all npm dependencies, and the `dist/` and `.astro/` build output. The README, the architecture, sitemap and requirements docs, the legacy README, the Cursor design rule and `CLAUDE.md` now describe the static site. `npm run dev` now serves `site/` with Wrangler.
+
+*Original finding:*
 
 The deployed site is the hand-written static `site/`. The Astro and Tailwind project (`src/`, `content/`, `public/`, `astro.config.mjs`, and the npm dependencies) has a single placeholder page and isn't deployed. Several docs still describe Astro as the way forward:
 - `README.md`: the stack line, "Edit content", "Add a page" and "Add an image" (which says to use `public/images/`).
@@ -189,18 +199,18 @@ The deployed site is the hand-written static `site/`. The Astro and Tailwind pro
 **Decide:** either commit to the static site (delete or archive the scaffold and update the docs), or plan the move to Astro. `CLAUDE.md` documents the current reality in the meantime.
 
 ### 17. Duplicate copies of content and images
-- [ ] Fixed
+- [ ] Fixed (mostly: only `legacy/pilot-site/images/` remains)
 
-- **Home page copy:** `content/pages/home.md` and `site/text_content/home.md` are two copies of the same text, so they will drift.
-- **Services copy:** `content/pages/services.md` and `site/text_content/services.md` are a second pair.
-- **Images:** `public/images/` and `legacy/pilot-site/images/` hold older copies of the logos and photos.
+- ~~**Home page copy:** `content/pages/home.md` and `site/text_content/home.md` are two copies of the same text, so they will drift.~~ Removed with the Astro scaffold on 2026-10-07. The `content/pages/` copies were older than the `site/` ones.
+- ~~**Services copy:** `content/pages/services.md` and `site/text_content/services.md` are a second pair.~~ Removed 2026-10-07.
+- **Images:** ~~`public/images/` (removed 2026-10-07) and~~ `legacy/pilot-site/images/` holds older copies of the logos and photos.
 
 ### 18. Git hygiene
 - [ ] Fixed
 
-- **Word lock file:** `~$G deploy.docx` shows as untracked. Add `~$*` to `.gitignore`.
+- ~~**Word lock file:** `~$G deploy.docx` shows as untracked. Add `~$*` to `.gitignore`.~~ Done: `.gitignore` now has `~$*`.
 - **Loose photos:** `Sabrina peaceful1.JPG` and `Sabrina peaceful2.JPG` are untracked in the repo root. Move them to an asset folder outside git.
-- **Line endings:** git warns about LF/CRLF on every diff. Add a `.gitattributes` with `* text=auto`.
+- ~~**Line endings:** git warns about LF/CRLF on every diff. Add a `.gitattributes` with `* text=auto`.~~ **Fixed 2026-10-07:** `.gitattributes` has `* text=auto eol=lf` plus `binary` rules for images and docx files. The `eol=lf` is needed because Git for Windows defaults to `core.autocrlf=true`, which would keep converting the bake scripts' LF output to CRLF. The two files that were CRLF on disk (`TMG site layout.txt` and one SVG) were converted to LF. Their stored contents didn't change.
 - **Large binaries:** multi-MB images and the `.docx` files are committed. Consider Git LFS, or keep originals outside the repo, especially after #5.
 
 ### 19. Image filenames contain spaces

@@ -2,109 +2,81 @@
 
 Staging site for [TheMentalGain.com](https://thementalgain.com), built per **`TMG rqmts.docx`**.
 
-**Stack:** Astro · Tailwind CSS · Markdown/MDX · Cloudflare Pages  
+**Stack:** static HTML · CSS · vanilla JavaScript · Python bake scripts · Cloudflare Pages
 **Repo:** [github.com/davidvb11758/thementalgain](https://github.com/davidvb11758/thementalgain)
 
 ## Quick start
 
-Requirements: **Node.js ≥ 22.12**
+Requirements: **Python 3** (bake scripts) and **Node.js** (only to run Wrangler through `npx`). There are no npm dependencies to install.
 
 ```bash
-npm install
-npm run dev
+npm run dev          # serve site/ locally with Wrangler (applies site/_headers)
+npm run bake:site    # Markdown copy + footer partial → HTML (no upload)
+npm run deploy       # bake, then upload site/ to Cloudflare Pages (after `npx wrangler login`)
+npm run deploy:only  # upload site/ without re-baking
 ```
 
-Open [http://localhost:4321](http://localhost:4321).
-
-```bash
-npm run build    # output → dist/
-npm run preview  # preview production build locally
-npm run deploy   # bake site/*.md into HTML, then wrangler pages deploy (after wrangler login)
-npm run bake:site   # Markdown → HTML only (no upload)
-npm run deploy:only # upload site/ without re-baking
-```
+Any static HTTP server pointed at `site/` also works for previewing. Opening the files directly (`file://`) doesn't, because the pages load `text_content/*.md` with `fetch()`.
 
 ## Project layout
 
 | Path | Purpose |
 |------|---------|
-| `content/pages/` | Page copy (`home.md`, `services.md`, …) |
-| `content/config/site.json` | Navigation, footer links, social URLs |
-| `src/components/` | Reusable UI |
-| `src/layouts/` | Page shells |
-| `src/pages/` | Astro routes (add incrementally) |
-| `src/styles/global.css` | **Design tokens** (colors, type, spacing) |
-| `public/images/` | Site images |
-| `docs/` | Architecture, sitemap, requirements summary |
-| `legacy/pilot-site/` | Old static HTML prototype |
+| `site/` | **The website.** Everything in it is uploaded to Cloudflare Pages. |
+| `site/text_content/` | Page copy in Markdown (`**ID:**` blocks), baked into the matching HTML |
+| `site/partials/site-footer.html` | Shared footer, baked into every page |
+| `site/scripts/` | Python bake scripts (`bake_all_from_md.py` runs them all) |
+| `site/css/styles.css`, `site/js/` | Styles and behavior (no bundler) |
+| `site/images/` | Web-sized images used by pages |
+| `orig-images-gitignore/` | Full-size originals. Git ignores this folder and it is not deployed. |
+| `docs/` | Architecture, sitemap, requirements summary, review findings |
+| `legacy/pilot-site/` | First single-page prototype (reference only) |
 
-See [docs/architecture.md](docs/architecture.md).
+See [docs/architecture.md](docs/architecture.md) and [CLAUDE.md](CLAUDE.md) for how the bake pipeline works.
 
 ## Edit content
 
-1. Open the Markdown file in `content/pages/` (same ID conventions as the pilot—see `home.md` header notes).
-2. Implement or update the matching Astro page when that section is built.
-3. Do **not** scatter copy in components unless it is truly global chrome.
+1. Edit the page's Markdown in `site/text_content/`. Each `**ID:**` line names the HTML element that receives the paragraphs below it.
+2. Run `npm run bake:site` and check the HTML diff.
+3. Don't hand-edit text inside elements that have an ID, because the bake overwrites it. `my-clients.html`, `contact.html` and `book-me.html` have no Markdown file, so edit them directly.
 
-## Add a page
-
-1. Add `content/pages/your-page.md` (or MDX under `src/pages/` when using layouts).
-2. Create `src/pages/your-page/index.astro` using `BaseLayout`.
-3. Add an entry to `content/config/site.json` → `primaryMenu` if it belongs in the nav.
-4. Add SEO title/description in the page frontmatter or layout props.
-5. `npm run build` and test mobile + keyboard navigation.
+To change the footer, edit `site/partials/site-footer.html` and re-bake. The header and menu are still copied by hand into each page.
 
 ## Add an image
 
-1. Put files in `public/images/` (use sensible size; prefer WebP when practical).
-2. Reference as `/images/filename.ext` in Markdown or Astro.
-3. Always set `alt` text.
+1. Keep the original in `orig-images-gitignore/`, and put a web-sized copy (JPG or WebP, ideally under 300 KB) in `site/images/`.
+2. Reference it with a relative path. Encode any spaces as `%20`.
+3. Always set `alt` text, plus `width` and `height`.
 
-## Add a podcast episode
+## Colors and fonts
 
-1. Extend `content/config/site.json` → `podcast` (or a future `content/podcast/` file).
-2. Use a reusable podcast component (to be added under `src/components/`) on Social and Home sections.
-3. Link out to Spotify / Apple / Instagram—do not hard-code URLs on multiple pages.
+Official palette: **`TMG Color palette.docx`**, summarized in `.cursor/rules/tmg-design-system.mdc`. Styles live in `site/css/styles.css`.
 
-## Change global colors
-
-Official palette: **`TMG Color palette.docx`** (also `content/config/design-tokens.json`).
-
-Edit **`src/styles/global.css`** → `@theme { --color-tmg-* … }` to match. Do not hard-code hex values in individual `.astro` files.
-
-**Fonts:** Lato (body), Lora (headings) — Google Fonts, loaded in `BaseLayout.astro`.
+**Fonts:** Lato (body), Lora (headings), loaded from Google Fonts in each page's `<head>`.
 
 ## Deploy (Cloudflare Pages)
 
-**Static pilot (`site/`):** from repo root, `npm run deploy` runs all Python bake scripts under `site/scripts/` (home, about, services, service details), then uploads `site/` with Wrangler.
+`npm run deploy` runs every bake script under `site/scripts/`, then uploads `site/` with Wrangler to the `thementalgain` Pages project. There is no build step on Cloudflare's side.
+
+Deploys from branch `main` are **Preview** deployments, served at **https://main.thementalgain.pages.dev**. The project's production branch is `production`, so **https://thementalgain.pages.dev** only changes when you deploy with `--branch=production`.
 
 | Setting | Value |
 |---------|--------|
 | CLI deploy | `npm run deploy` |
-| Build output directory | `site` |
-| Node version | 22+ (Python 3 required for bake) |
-
-**Future Astro (`dist/`):** `npm run build` → output `dist/`; Pages Git build can use that when Astro replaces the pilot.
+| Output directory | `site` |
+| Tools | Python 3 (bake), Node.js (`npx wrangler`) |
 
 Connect custom domain **thementalgain.com** in the Pages project. Keep **master.thementalgain.com** DNS pointing to InMotion if that subdomain stays on WordPress.
 
-## Environment variables
+## External services
 
-Copy `.env.example` → `.env` for local experiments.  
-Set production secrets in **Cloudflare Pages → Settings → Environment variables** (never commit `.env`).
-
-Planned integrations: contact form endpoint, newsletter provider, Google Calendar booking URL.
-
-## External services (planned)
-
-- Google Calendar / Google appointment scheduling (Booking)
-- Form provider for Contact Me (Cloudflare-compatible)
-- Newsletter provider
-- Instagram (link + optional latest post embed)
+- **Web3Forms:** contact form (`contact.html`) and newsletter signup (home page)
+- **SimplyBook.me:** booking calendar (`book-me.html`, `js/book-me.js`)
+- **Instagram and Spotify:** linked from the footer and the About page
 
 ## Legacy pilot
 
-The earlier single-page HTML site lives under `legacy/pilot-site/` (and may still exist as `/site` on disk). It used Python to bake `home.md` into HTML; the Astro site replaces that workflow over time.
+The first single-page prototype lives under `legacy/pilot-site/` for reference. `site/` grew out of it.
 
 ## Documentation
 
@@ -112,4 +84,4 @@ The earlier single-page HTML site lives under `legacy/pilot-site/` (and may stil
 - [docs/sitemap.md](docs/sitemap.md)
 - [docs/architecture.md](docs/architecture.md)
 - [docs/review-findings.md](docs/review-findings.md) — open issues and fixes, by priority
-- [CLAUDE.md](CLAUDE.md) — how the live `site/` actually works (bake pipeline, shared header/footer, design tokens)
+- [CLAUDE.md](CLAUDE.md) — how the live `site/` works (bake pipeline, shared header/footer, design tokens)

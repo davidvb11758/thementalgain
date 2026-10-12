@@ -30,9 +30,9 @@ Welcome to The Mental Gain
 
 **ID:** `home-welcome-body`
 
-I am a *Certified Mental Performance Consultant*® . We all need that mental lift or that mental edge. Work with me and I will help you achieve the mental gain you have been striving for.
+I’m Sabrina..
 
-Every person is different. And each requires personal understanding, and a personal plan to help them achieve their desired goals. Whether it is confidence, motivation, self-esteem, or any other type of support, together we can explore your past and get you on your way to peak performance.
+I am a ***Certified*** *Mental Performance Consultant*®. If you want to help your athlete or team play with ***confidence, move on from mistakes, or just start playing to their potential***, you’ve come to the right place. I’ve worked with hundreds of athletes to help them achieve their best mindset. Get ready to watch your athlete or team play like you know they can, and get back to enjoying their sport!
 
 ---
 

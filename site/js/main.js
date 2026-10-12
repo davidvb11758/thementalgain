@@ -97,18 +97,30 @@ function initNewsletter() {
     status.className = 'form-status' + (type ? ' is-' + type : '');
   };
 
+  // The input is named "1. Email" (the label in the notification email), so look it up by id.
+  const emailInput = document.getElementById('newsletter-email');
+  if (!emailInput) return;
+  emailInput.addEventListener('input', () => emailInput.removeAttribute('aria-invalid'));
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const botcheck = form.elements.botcheck?.value?.trim();
     if (botcheck) return;
 
-    const email = form.elements.email.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      show('Please enter a valid email address.', 'error');
-      form.elements.email.focus();
+    const email = emailInput.value.trim();
+    const problem = !email
+      ? 'Please enter your email address.'
+      : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+        ? 'Please enter a valid email address, like name@example.com.'
+        : '';
+    if (problem) {
+      emailInput.setAttribute('aria-invalid', 'true');
+      show(problem, 'error');
+      emailInput.focus();
       return;
     }
+    emailInput.removeAttribute('aria-invalid');
 
     const accessKey = form.querySelector('input[name="access_key"]')?.value?.trim();
     if (!accessKey) {

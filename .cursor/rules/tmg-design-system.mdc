@@ -5,7 +5,7 @@ alwaysApply: true
 
 # TMG design system (authoritative)
 
-Source: **`TMG Color palette.docx`** at repo root. Machine-readable copy: `content/config/design-tokens.json`. CSS: `src/styles/global.css` `@theme`.
+Source: **`TMG Color palette.docx`** at repo root. CSS: `site/css/styles.css`.
 
 ## Colors
 
@@ -18,7 +18,7 @@ Source: **`TMG Color palette.docx`** at repo root. Machine-readable copy: `conte
 | Background light | Lavender Gray | `#f5f4fa` |
 | Background dark | Midnight blue | `#17213c` |
 
-Border color is not specified in the docx; use Charcoal at reduced opacity or tokens in `global.css`—do not invent a second palette.
+Border color is not specified in the docx; use Charcoal at reduced opacity—do not invent a second palette.
 
 ## Fonts
 
@@ -27,6 +27,7 @@ Border color is not specified in the docx; use Charcoal at reduced opacity or to
 
 ## Rules for agents
 
-- Do **not** hard-code one-off hex values in components; use `@theme` / Tailwind `tmg-*` tokens.
+- Do **not** introduce one-off hex values; use only the palette above.
+- The `:root` variables in `site/css/styles.css` (`--contrast-3`, `--accent`, `--blue`, …) still hold the deprecated pilot palette. Don't use them for new work until they are updated (finding #11 in `docs/review-findings.md`).
 - Do **not** replace Lato/Lora without an explicit user request and docx update.
 - Older pilot colors (teal/coral from legacy `pilot-site`) are **deprecated** unless the user says otherwise.

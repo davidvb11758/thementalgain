@@ -4,8 +4,8 @@ From **TMG site layout.txt** / **TMG rqmts.docx**.
 
 | Page | Route (planned) | Content file |
 |------|-----------------|--------------|
-| Home | `/` | `content/pages/home.md` |
-| Services | `/services/` | `content/pages/services.md` |
+| Home | `/` | `site/index.html` · copy: `site/text_content/home.md` |
+| Services | `/services.html` | `site/services.html` · copy: `site/text_content/services.md` |
 | Initial Consultation | `/services/initial-consultation/` | `site/services/initial-consultation/index.html` · copy: `site/text_content/service-initial-consultation.md` |
 | Individual Sessions | `/services/individual-sessions/` | `site/services/individual-sessions/index.html` · copy: `site/text_content/service-individual-sessions.md` |
 | Online Learning Modules | `/services/online-learning-modules/` | `site/services/online-learning-modules/index.html` · copy: `site/text_content/service-online-learning-modules.md` |
@@ -16,4 +16,4 @@ From **TMG site layout.txt** / **TMG rqmts.docx**.
 | Contact | `/contact.html` | `site/contact.html` · Web3Forms contact form |
 | Confidentiality | `/confidentiality/` | Not in main menu |
 
-Live site (`site/`): the footer comes from `site/partials/site-footer.html`, baked into every page by `npm run bake:site`. The primary menu is still copied by hand into each page's `<header>`. (`content/config/site.json` holds the menu and footer for the Astro scaffold only.)
+The footer comes from `site/partials/site-footer.html`, baked into every page by `npm run bake:site`. The primary menu is still copied by hand into each page's `<header>`.
