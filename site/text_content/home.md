@@ -1,6 +1,7 @@
 # HOME PAGE – Text Content
 
-> **Notes for the reader of this doc**
+> **Notes for the reader of this doc**  
+> 
 
 > - Source: homepage scraped from [thementalgain.com](https://thementalgain.com/) (WordPress / GeneratePress).  
 > - Sections match **main page body** only (not site header, footer, or navigation).  
@@ -15,7 +16,7 @@
 
 Full-width image: `images/Sabrina Mountain 2b expand1920.jpg`. Headlines are static in `index.html` (not loaded from markdown):
 
-- **H2:** Promoting Healthy Minds and Peak Performance
+- **H2:** Promoting Peak Performance through Mental Skills Training  
 - **H3:** What do you have to gain?
 
 ---
@@ -32,7 +33,7 @@ Welcome to The Mental Gain
 
 I’m Sabrina..
 
-I am a ***Certified*** *Mental Performance Consultant*®. If you want to help your athlete or team play with ***confidence, move on from mistakes, or just start playing to their potential***, you’ve come to the right place. I’ve worked with hundreds of athletes to help them achieve their best mindset. Get ready to watch your athlete or team play like you know they can, and get back to enjoying their sport!
+I am a ***Certified*** *Mental Performance Consultant*®. If you want to help your athlete or team play with ***confidence, move on from mistakes, or just start playing to their potential***, you’ve come to the right place. I’ve worked with hundreds of athletes to help them achieve their best mindset. Get ready to watch your athlete or team play to their potential, and get back to enjoying their sport\!
 
 ---
 
@@ -56,19 +57,18 @@ I am a ***Certified*** *Mental Performance Consultant*®. If you want to help yo
 
 **ID:** `home-services-initial-consultation`
 
-Take your first step on your road to the mental gain.
-
+Learn more about The Mental Gain and how we can help your athletes or team in a phone call with Sabrina.   
 **ID:** `home-services-individual-sessions`
 
-Let's dive into you.
+Athletes meet 1-on-1 with Sabrina to strengthen their mindset through a personalized plan tailored to their individual needs.
 
 **ID:** `home-services-online-modules`
 
-Online, self-paced mental performance modules.
+Learn mental skills through online modules, built by Sabrina and tailored to your athletes' needs. Each module is paired with 30-minute sessions with Sabrina.
 
 **ID:** `home-services-team-sessions`
 
-Team success is more than just players.
+Have your team work directly with Sabrina to improve team dynamics, communication, motivation, confidence, and other mental skills. Every session is personalized to address your team's specific needs, challenges, and goals.
 
 *(Each card: **Discover more…** → `services/<slug>/` detail pages.)*
 

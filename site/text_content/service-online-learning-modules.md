@@ -1,7 +1,9 @@
 # Online Learning Modules – detail page
 
-> **Notes**
-> - **Paragraph IDs:** `**ID:**` → matching `id` in `services/online-learning-modules/index.html`.
+> **Notes**  
+> 
+
+> - **Paragraph IDs:** `**ID:**` → matching `id` in `services/online-learning-modules/index.html`.  
 > - Description blocks and card copy are loaded by `js/service-detail-content.js` when served over HTTP.
 
 ---

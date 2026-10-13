@@ -14,7 +14,7 @@ icons_dir = Path(__file__).resolve().parent.parent / "images" / "icons"
 icons_dir.mkdir(parents=True, exist_ok=True)
 
 labels = [
-    ("service-initial-consultation", "Initial Consultation"),
+    ("service-initial-consultation", "Discovery Session"),
     ("service-individual-sessions", "Individual Sessions"),
     ("service-online-modules", "Online Learning Modules"),
     ("service-team-sessions", "Team Sessions"),

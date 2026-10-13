@@ -17,7 +17,7 @@ Get to know more about The Mental Gain
 
 ## \[My Story\]
 
-*(Section photo: `images/Sabrina_headshot_400.jpg` — fixed in HTML.)*
+*(Section photo: `images/sabrina maroon.jpg` — fixed in HTML.)*
 
 **ID:** `about-my-story-title`
 
@@ -27,7 +27,7 @@ How I got started on this path
 
 Hey everyone, my name is Sabrina Rodgers. When I was young I was fortunate enough to grow up in a family that owned and operated a very successful volleyball club. Through the years I was taught mental skills and sport psychology concepts that allowed me to play collegiate track and volleyball. During this time, I found my passion for coaching and helping athletes have a positive experience through sport. This led me to get a Master's in Sport Administration degree while also coaching collegiate volleyball. After graduating, I still wanted to pursue sport psychology where I could have a direct impact on helping athletes. During the following two years I obtained a second Masters degree, this time in Sport, Exercise, and Performance Psychology. During this time I was a consultant for a Division II Women's Basketball Team, in addition to other athletes from soccer, volleyball, track, baseball, softball, and gymnastics. Continuing my education and professional experience I am now a **Certified Mental Performance Consultant® (CMPC)**.
 
-Now, my goal is simple; I want to provide athletes an avenue to create a healthy mindset, while reaching their fullest potential in their sport. If you're reading this, it means you are taking a step in the right direction – I can't wait to work with you!
+Now, my goal is simple; I want to provide athletes an avenue to create a healthy mindset, while reaching their fullest potential in their sport. If you're reading this, it means you are taking a step in the right direction – I can't wait to work with you\!
 
 ---
 
@@ -38,6 +38,25 @@ Now, my goal is simple; I want to provide athletes an avenue to create a healthy
 **ID:** `about-cmpc-body`
 
 *The **Certified Mental Performance Consultant ®** credential is awarded by The Association of Applied Sport Psychology. With fewer than 900 CMPC's globally, this certification signifies that a consultant has attained the highest standard of professional expertise in the field. Requirements include obtaining a Master's degree in Sport Psychology, successfully passing a certification exam, completing extensive supervised applied work, pledging adherence to ethical guidelines, and requiring engagement in ongoing professional development. Mental performance consultants specialize in enhancing performance, enjoyment, and personal development within sports and other performance areas.*
+
+## \[Quick Facts\]
+
+*(Section photo: `images/Sabrina welcome 400.JPG` — fixed in HTML. Bullets are `<li>` items in the `<ul id="about-snapshot-list">`; add or remove a `* ` line and re-bake.)*
+
+**ID:** `about-snapshot-heading`
+
+Quick Facts About Sabrina
+
+**ID:** `about-snapshot-list`
+
+* Former dual-sport collegiate athlete
+* Former collegiate volleyball coach
+* Coach at #1 Volleyball Club in the Nation
+* Certified Mental Performance Consultant®
+* Master's in Sport, Exercise, and Sport Psychology
+* Master's in Sport Administration
+* Dog mom
+* World traveler
 
 ---
 
@@ -69,4 +88,4 @@ Mental performance is not only what you work on in session—it is what you prac
 
 **ID:** `social-tfa-podcast-p1`
 
-**The Full Approach** podcast navigates today's youth sports landscape with hosts who bring 75+ combined years of experience. Episodes dive into untaught topics, touchy subjects, and real stories—from *The Car Ride Home* and *Put Me In, Coach!* to interviews with leaders like Bob Westbrook of A5 Volleyball. Listen for food for thought, a little comic relief, and practical ideas you can use with your athlete or team.
+**The Full Approach** podcast navigates today's youth sports landscape with hosts who bring 75+ combined years of experience. Episodes dive into untaught topics, touchy subjects, and real stories—from *The Car Ride Home* and *Put Me In, Coach\!* to interviews with leaders like Bob Westbrook of A5 Volleyball. Listen for food for thought, a little comic relief, and practical ideas you can use with your athlete or team.

@@ -23,9 +23,12 @@ async function initServicesContent() {
 }
 
 function applyMarkdownIds(text) {
-  for (const { id, raw } of parseIdBlocks(text)) {
+  for (const { id, raw, items } of parseIdBlocks(text)) {
     const el = document.getElementById(id);
-    if (el) el.innerHTML = inlineMarkdownToHtml(raw);
+    if (!el) continue;
+    el.innerHTML = items
+      ? items.map((i) => `<li>${inlineMarkdownToHtml(i)}</li>`).join('')
+      : inlineMarkdownToHtml(raw);
   }
 }
 
@@ -61,6 +64,16 @@ function parseIdBlocks(text) {
       }
       paraLines.push(line);
       i += 1;
+    }
+
+    if (paraLines.length && paraLines[0].trim().startsWith('* ')) {
+      // `* ` bullets -> <li> items (for a <ul id=...> element)
+      const items = paraLines
+        .map((l) => l.trim())
+        .filter((l) => l.startsWith('* '))
+        .map((l) => l.slice(2).trim());
+      blocks.push({ id, items });
+      continue;
     }
 
     const raw = paraLines.join(' ').trim();

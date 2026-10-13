@@ -571,6 +571,75 @@ h1, h2, h3, h4 {
   font-style: italic;
 }
 
+/* Quick facts (about page) */
+.about-snapshot {
+  padding-block: 48px 56px;
+  background: #17213c;
+}
+
+.about-snapshot .section-title {
+  margin-bottom: clamp(20px, 3vw, 28px);
+}
+
+.about-snapshot-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 72px);
+  align-items: center;
+  max-width: 960px;
+  margin-inline: auto;
+}
+
+.about-snapshot-photo img {
+  width: 100%;
+  border-radius: 80px 4px;
+  box-shadow: 0 12px 40px rgb(0 0 0 / 0.35);
+}
+
+.about-snapshot-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-snapshot-list li {
+  position: relative;
+  padding: 8px 0 8px 40px;
+  border-bottom: 1px solid rgb(171 221 247 / 0.2);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-style: italic;
+  line-height: 1.35;
+  color: #ffffff;
+}
+
+.about-snapshot-list li:last-child {
+  border-bottom: 0;
+}
+
+.about-snapshot-list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  transform: translateY(-50%);
+  background: #abddf7;
+  /* Five-point star */
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+@media (max-width: 800px) {
+  .about-snapshot-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-snapshot-photo {
+    max-width: 320px;
+    margin-inline: auto;
+  }
+}
+
 @media (max-width: 800px) {
   .about-story-grid,
   .about-cmpc-grid {
@@ -888,6 +957,52 @@ h1, h2, h3, h4 {
   border-top: 5px solid #4057a1;
   background: linear-gradient(145deg, #ffffff 0%, #eef3fb 100%);
   border-left: 4px solid #abddf7;
+}
+
+/* Services page: how sessions are offered (3 cards in a row, home card style) */
+.services-modes {
+  padding-block: clamp(40px, 5vw, 64px);
+}
+
+.services-modes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 900px) {
+  .services-modes-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.service-card--virtual {
+  border-top: 5px solid #4057a1;
+  box-shadow: 0 12px 40px rgb(0 0 0 / 0.28), inset 0 0 0 1px rgb(64 87 161 / 0.15);
+}
+
+.service-card--inperson {
+  border-top: 5px solid #abddf7;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f4fa 100%);
+}
+
+.service-card--travel {
+  border-top: 5px solid #4057a1;
+  background: linear-gradient(145deg, #ffffff 0%, #eef3fb 100%);
+  border-left: 4px solid #abddf7;
+}
+
+.service-card-list {
+  margin: 0;
+  list-style: disc;
+  padding-left: 1.2rem;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #25283d;
+}
+
+.service-card-list li + li {
+  margin-top: 8px;
 }
 
 .service-card h3 {
@@ -2461,6 +2576,21 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
+.services-page .faq-answer ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.services-page .faq-answer li + li {
+  margin-top: 0.3rem;
+}
+
+.services-page .faq-answer p + p,
+.services-page .faq-answer p + ul,
+.services-page .faq-answer ul + p {
+  margin-top: 0.85rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .services-page .faq-question,
   .services-page .faq-icon::before,
@@ -2536,6 +2666,27 @@ h1, h2, h3, h4 {
   height: auto;
   display: block;
   object-fit: cover;
+}
+
+/* Team Sessions: three-photo collage in place of the single image */
+.service-detail-media--collage {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  overflow: visible;
+  background: none;
+  box-shadow: none;
+}
+
+.service-detail-media--collage img {
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgb(23 33 60 / 0.08);
+}
+
+.service-detail-media--collage .collage-wide {
+  grid-column: 1 / -1;
+  aspect-ratio: 8 / 5;
 }
 
 .service-detail-copy {

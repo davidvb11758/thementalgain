@@ -32,6 +32,12 @@ function applyAboutMarkdown(text) {
 
 function paragraphsToHtml(paragraphs, tagName = 'DIV') {
   if (!paragraphs.length) return '';
+  if (tagName === 'UL') {
+    return paragraphs
+      .filter((p) => p.startsWith('* '))
+      .map((p) => `<li>${inlineMarkdownToHtml(p.slice(2))}</li>`)
+      .join('');
+  }
   const htmlParts = paragraphs.map((p) => inlineMarkdownToHtml(p));
   if (tagName === 'H1' || tagName === 'H2' || tagName === 'H3') return htmlParts[0];
   if (htmlParts.length === 1) return htmlParts[0];
@@ -63,6 +69,14 @@ function parseIdBlocks(text) {
       if (line === '---') break;
       if (/^\*\(/.test(line.trim())) break;
       if (/^-\s/.test(line) && current.length === 0 && paragraphs.length === 0) break;
+
+      if (/^\* /.test(line)) {
+        // Each `* ` bullet is its own entry (rendered as <li> inside a <ul id=...>).
+        if (current.length) paragraphs.push(current.join(' ').trim());
+        current = [line];
+        i += 1;
+        continue;
+      }
 
       if (line.trim() === '') {
         if (current.length) {

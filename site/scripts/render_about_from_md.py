@@ -40,6 +40,10 @@ def inline_markdown_to_html(raw: str) -> str:
 def paragraphs_to_html(paragraphs: list[str], tag: str = "div") -> str:
     if not paragraphs:
         return ""
+    if tag == "ul":
+        return "".join(
+            f"<li>{inline_markdown_to_html(p[2:])}</li>" for p in paragraphs if p.startswith("* ")
+        )
     parts = [inline_markdown_to_html(p) for p in paragraphs]
     if tag in ("h1", "h2", "h3"):
         return parts[0]
@@ -73,6 +77,13 @@ def parse_id_blocks(text: str) -> dict[str, list[str]]:
                 break
             if re.match(r"^-\s", line) and not current and not paragraphs:
                 break
+            if re.match(r"^\* ", line):
+                # Each `* ` bullet is its own entry (rendered as <li> inside a <ul id=...>).
+                if current:
+                    paragraphs.append(" ".join(current).strip())
+                current = [line]
+                i += 1
+                continue
             if line.strip() == "":
                 if current:
                     paragraphs.append(" ".join(current).strip())
@@ -100,7 +111,7 @@ def fill_html(html: str, blocks: dict[str, list[str]]) -> str:
         return f"<{tag}{attrs}>{inner}</{tag}>"
 
     return re.sub(
-        r'<(div|h1|h2|h3)([^>]* id="((?:about|social)-[^"]+)"[^>]*)>.*?</\1>',
+        r'<(div|h1|h2|h3|ul)([^>]* id="((?:about|social)-[^"]+)"[^>]*)>.*?</\1>',
         replace_by_id,
         html,
         flags=re.DOTALL,

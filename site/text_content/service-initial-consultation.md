@@ -1,7 +1,9 @@
-# Initial Consultation – detail page
+# Discovery Session – detail page
 
-> **Notes**
-> - **Paragraph IDs:** `**ID:**` → matching `id` in `services/initial-consultation/index.html`.
+> **Notes**  
+> 
+
+> - **Paragraph IDs:** `**ID:**` → matching `id` in `services/initial-consultation/index.html`.  
 > - Description blocks and card copy are loaded by `js/service-detail-content.js` when served over HTTP.
 
 ---
@@ -10,7 +12,7 @@
 
 **ID:** `service-initial-consultation-p1`
 
-Sign up for your FREE initial consultation for individual clients. Here we will discuss the sport psychology process, explore your needs, and answer any questions.
+Sign up for your FREE discovery session for individual clients. Here we will discuss the sport psychology process, explore your needs, and answer any questions.
 
 **ID:** `service-initial-consultation-p2`
 
@@ -34,4 +36,4 @@ This is a 60-minute meeting to get to know each other and map out a plan for you
 
 **ID:** `service-initial-consultation-card-cta`
 
-Schedule your consultation
+Schedule your discovery session

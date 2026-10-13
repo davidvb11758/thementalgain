@@ -68,6 +68,11 @@ def parse_id_blocks(text: str) -> dict[str, str]:
                 break
             para_lines.append(line)
             i += 1
+        if para_lines and para_lines[0].lstrip().startswith("* "):
+            # `* ` bullets -> <li> items (for a <ul id=...> element)
+            items = [l.strip()[2:].strip() for l in para_lines if l.lstrip().startswith("* ")]
+            blocks[block_id] = "".join(f"<li>{inline_markdown_to_html(i)}</li>" for i in items)
+            continue
         raw = " ".join(para_lines).strip()
         if raw:
             blocks[block_id] = inline_markdown_to_html(raw)
@@ -76,17 +81,19 @@ def parse_id_blocks(text: str) -> dict[str, str]:
 
 def fill_html(html: str, blocks: dict[str, str]) -> str:
     def replace_div(match: re.Match[str]) -> str:
-        classes = match.group(1)
-        block_id = match.group(2)
+        open_tag = match.group(1)
+        block_id = match.group(3)
+        close_tag = match.group(4)
         inner = blocks.get(block_id, "")
         if not inner:
             return match.group(0)
-        return f'<div class="{classes}" id="{block_id}">{inner}</div>'
+        return f"{open_tag}{inner}{close_tag}"
 
     return re.sub(
-        r'<div class="([^"]*)" id="(services-[^"]+)"></div>',
+        r'(<(div|p|h2|h3|ul)(?: class="[^"]*")? id="(services-[^"]+)">)(?:(?!</\2>).)*?(</\2>)',
         replace_div,
         html,
+        flags=re.S,
     )
 
 
