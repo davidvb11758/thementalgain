@@ -39,8 +39,9 @@ The copy is applied twice, in two ways:
 1. **At deploy time:** `site/scripts/render_*_from_md.py` (run in order by `bake_all_from_md.py`) rewrite the inner HTML of matching elements in place. Each script only matches certain tags and ID prefixes:
    - home: `div`/`h2` with `home-*`. It also sets the newsletter placeholder and button text, and `data-newsletter-success` on `<html>`.
    - about: `div`/`h1`/`h2`/`h3` with `about-*` or `social-*`.
-   - services: only **empty** `<div class="…" id="services-…"></div>`, so it currently does nothing (bug #2 in `docs/review-findings.md`).
+   - services: `div`/`p` with `services-*`, filling the first paragraph after each `**ID:**` line. Extra paragraphs and bullets under an ID are not baked (see bug #2 in `docs/review-findings.md`).
    - service details: any tag with a matching ID. It warns about IDs that have no matching element.
+   - FAQ: `render_faq_from_md.py` regenerates the whole accordion between the `<!-- faq:start -->` / `<!-- faq:end -->` markers in `services.html` from `site/text_content/faq.md` (`faq-qN` question + `faq-aN` answer blocks; answers can have several paragraphs and `*` lists). Add, remove or reorder FAQs in the `.md` only. No JS loader reads `faq.md`.
 2. **In the browser:** `<html data-home-content=…>` or `data-page-content=…` points at the `.md` file. `js/home-content.js`, `about-content.js`, `services-content.js` and `service-detail-content.js` download it and rewrite the same elements again.
 
 The block parser and the inline Markdown handling (links, `**bold**`, `*em*`, `\!`/`\[`/`\]` unescaping, HTML escaping) are copied into all 4 Python scripts and all 4 JS loaders. A change to the format must be made in every copy.

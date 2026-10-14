@@ -41,7 +41,7 @@ Now, my goal is simple; I want to provide athletes an avenue to create a healthy
 
 ## \[Quick Facts\]
 
-*(Section photo: `images/Sabrina welcome 400.JPG` — fixed in HTML. Bullets are `<li>` items in the `<ul id="about-snapshot-list">`; add or remove a `* ` line and re-bake.)*
+*(Section photo: `images/Sabrina welcome 400.JPG` — fixed in HTML. Bullets are `<li>` items in the `<ul id="about-snapshot-list">`; add or remove a `*`  line and re-bake.)*
 
 **ID:** `about-snapshot-heading`
 
@@ -49,13 +49,13 @@ Quick Facts About Sabrina
 
 **ID:** `about-snapshot-list`
 
-* Former dual-sport collegiate athlete
-* Former collegiate volleyball coach
-* Coach at #1 Volleyball Club in the Nation
-* Certified Mental Performance Consultant®
-* Master's in Sport, Exercise, and Sport Psychology
-* Master's in Sport Administration
-* Dog mom
+* Former dual-sport collegiate athlete  
+* Former collegiate volleyball coach  
+* Coach at \#1 Volleyball Club in the Nation  
+* Certified Mental Performance Consultant®  
+* Master's in Sport, Exercise, and Performance Psychology  
+* Master's in Sport Administration  
+* Dog mom  
 * World traveler
 
 ---

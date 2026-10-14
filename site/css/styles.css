@@ -2329,6 +2329,54 @@ h1, h2, h3, h4 {
   transform: translateY(-2px);
 }
 
+.individual-club-group {
+  max-width: 920px;
+  margin: 0 auto 40px;
+}
+
+.my-clients-individuals-intro + .individual-club-group {
+  margin-top: 28px;
+}
+
+.individual-club-group:last-child {
+  margin-bottom: 0;
+}
+
+.individual-club-heading {
+  margin: 0 0 18px;
+  text-align: center;
+  font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+  font-weight: 700;
+  color: #abddf7;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+/* Short team names (13-1, 14R): small chips, many per row */
+.individual-client-grid--compact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.individual-client-grid--compact .individual-client-chip {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Long athlete descriptions: larger chips, two per row */
+.individual-client-grid--wide {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+}
+
+.individual-client-grid--wide .individual-client-chip {
+  padding: 14px 24px;
+  font-size: 1rem;
+}
+
 @media (max-width: 900px) {
   .testimonial-mosaic {
     grid-template-columns: repeat(2, minmax(0, 1fr));
