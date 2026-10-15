@@ -1,7 +1,6 @@
 # HOME PAGE – Text Content
 
-> **Notes for the reader of this doc**  
-> 
+> **Notes for the reader of this doc**
 
 > - Source: homepage scraped from [thementalgain.com](https://thementalgain.com/) (WordPress / GeneratePress).  
 > - Sections match **main page body** only (not site header, footer, or navigation).  
@@ -57,18 +56,18 @@ I am a ***Certified*** *Mental Performance Consultant*®. If you want to help yo
 
 **ID:** `home-services-initial-consultation`
 
-Learn more about The Mental Gain and how we can help your athletes or team in a phone call with Sabrina.   
+Learn more about The Mental Gain and how we can help your athlete or team. Sign up for a complimentary phone call with Sabrina to discuss your situation and get your questions answered.  
 **ID:** `home-services-individual-sessions`
 
 Athletes meet 1-on-1 with Sabrina to strengthen their mindset through a personalized plan tailored to their individual needs.
 
 **ID:** `home-services-online-modules`
 
-Learn mental skills through online modules, built by Sabrina and tailored to your athletes' needs. Each module is paired with 30-minute sessions with Sabrina.
+Athletes learn mental skills through online modules built by Sabrina and tailored to their needs. Each module is paired with 30-minute sessions with Sabrina.
 
 **ID:** `home-services-team-sessions`
 
-Have your team work directly with Sabrina to improve team dynamics, communication, motivation, confidence, and other mental skills. Every session is personalized to address your team's specific needs, challenges, and goals.
+Have your team work directly with Sabrina to improve team dynamics, communication, motivation, confidence, or any other mental skills they need. Every session is personalized to address your team's specific challenges, and goals.
 
 *(Each card: **Discover more…** → `services/<slug>/` detail pages.)*
 

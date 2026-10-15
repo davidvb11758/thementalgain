@@ -17,45 +17,23 @@ Full-width hero: `images/services/services-hero-option-b-morning-horizon-1920x70
 
 ### Helping you reach your potential
 
-**ID:** `services-overview-title`
-
-Services
-
 **ID:** `services-overview-p1`
 
 The Mental Gain offers many ways to improve your mental game\! Have Sabrina meet with an individual athlete, or an entire team. During the sessions, clients can expect to address their goals, learn mental skills, and grow as an athlete. Prepare to improve performance by developing psychological skills such as **confidence, bouncing back from mistakes, resiliency, motivation, performing under pressure, overcoming perfectionism**, and much more\!
 
----
-
-## \[service modes — 3 cards, no section title\]
-
-*(Three cards in a row above Discovery Session, styled like the home page service cards. Each card is a title plus a `* ` bullet list; the list becomes `<li>` items in a `<ul>`.)*
-
-**ID:** `services-mode-virtual-title`
-
 Virtual Sessions
 
-**ID:** `services-mode-virtual-list`
-
-* Most sessions are conducted virtually.
+* Most sessions are conducted virtually.  
 * Available for all individuals and teams.
-
-**ID:** `services-mode-inperson-title`
 
 In-Person Sessions (Based in Atlanta, Georgia)
 
-**ID:** `services-mode-inperson-list`
-
-* Available to all teams in Georgia
+* Available to all teams in Georgia  
 * Available to individuals upon request, depending on location and availability.
-
-**ID:** `services-mode-travel-title`
 
 Out-of-State Team Sessions
 
-**ID:** `services-mode-travel-list`
-
-* Sabrina can travel to your team!
+* Sabrina can travel to your team\!  
 * Her personal access to discounted airfare helps make out-of-state sessions more affordable.
 
 ---
@@ -66,7 +44,7 @@ Out-of-State Team Sessions
 
 **Image ID:** `services-image-initial-consultation` **Image file (listing):** `images/services/2022-player-injury-645x280.png` — full: `2022-player-injury-500b.png` (detail page) **Image alt:** Athlete sitting on court after an injury, head in hands
 
-### Discovery Session
+### Initial Consultation
 
 **ID:** `services-initial-consultation-p1`
 
@@ -76,9 +54,7 @@ Sign up for your FREE discovery call to chat with Sabrina directly. Here we will
 
 Have questions before? Feel free to contact me via the contact form.
 
-**ID:** `services-initial-consultation-p3`
 
-Placeholder section for right now
 
 ---
 
@@ -92,11 +68,13 @@ Placeholder section for right now
 
 **ID:** `services-individual-sessions-p1`
 
-Let's dive into *you*. Let's learn about your situation and work together to bring out the best you can be. During our individual sessions we can help you understand your mental strengths and areas for improvement. Whether it is confidence, or motivation, or self-esteem, or anything else, we can unlock the door to gain that mental edge on your way to peak performance.
+Athletes meet 1-on-1 with Sabrina in these 50-minute sessions to strengthen their mindset through a personalized plan tailored to their individual needs. During sessions, athletes learn specific mental skills and develop healthier, more productive ways of thinking to help them perform at their best.
+
+Whether your athlete struggles with confidence, negative self-talk, bouncing back from mistakes, or simply wants to take their mental game to the next level, Sabrina can help unlock their full potential.
 
 **ID:** `services-individual-sessions-p2`
 
-Sessions can be online or in-person. There is no long-term commitment required.
+50-minute sessions involve learning mental skills through personal reflection, activities, discussion, watching videos, and actually practicing mental skills in real time. There is no long-term commitment required.
 
 ---
 
@@ -110,11 +88,11 @@ Sessions can be online or in-person. There is no long-term commitment required.
 
 **ID:** `services-online-modules-p1`
 
-Mental performance training for any athlete looking to improve their mindset, whether that's building confidence, overcoming mistakes, or simply becoming mentally stronger. These short, self-paced modules offer a more flexible, schedule-friendly alternative to traditional 50-minute 1-on-1 sessions.
+Online mental performance training for athletes. These short, self-paced modules offer a more flexible, schedule-friendly alternative to traditional 50-minute 1-on-1 sessions. Athletes learn practical mental skills to build confidence, bounce back from mistakes, and strengthen their mindset to perform at their best. 
 
 **ID:** `services-online-modules-p2`
 
-**Every module includes a 30-minute, one-on-one session with Sabrina** to help your athlete apply what they've learned to their specific sport and situation. Sabrina personally creates and hand-picks each module based on your athlete's needs and goals, combining the convenience of online learning with personalized coaching.
+**Every module is paired with a 30-minute, 1-on-1 session with Sabrina** to help your athlete apply what they've learned to their specific sport and individual needs. Each module is personally created by Sabrina, using the same mental skills, strategies, and examples taught in her traditional 50-minute sessions. Sabrina also hand-picks each module based on your athlete's unique needs and goals, combining the convenience of self-paced learning with the benefits of personalized coaching.
 
 ---
 

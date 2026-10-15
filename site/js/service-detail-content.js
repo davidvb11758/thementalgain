@@ -80,7 +80,7 @@ function escapeHtml(s) {
 
 function inlineMarkdownToHtml(raw) {
   let s = escapeHtml(
-    raw.replace(/\\!/g, '!').replace(/\\\[/g, '[').replace(/\\\]/g, ']')
+    raw.replace(/\\([![\]\\-])/g, '$1')
   );
   s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
     const safeHref = href.replace(/"/g, '%22');

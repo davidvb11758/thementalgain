@@ -29,7 +29,7 @@ DETAIL_PAGES: tuple[tuple[Path, Path], ...] = (
 
 
 def unescape_md(raw: str) -> str:
-    return raw.replace("\\!", "!").replace("\\[", "[").replace("\\]", "]")
+    return re.sub(r"\\([!\[\]\\-])", r"\1", raw)
 
 
 def escape_html(s: str) -> str:

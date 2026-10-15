@@ -6,7 +6,7 @@ From **TMG site layout.txt** / **TMG rqmts.docx**.
 |------|-----------------|--------------|
 | Home | `/` | `site/index.html` · copy: `site/text_content/home.md` |
 | Services | `/services.html` | `site/services.html` · copy: `site/text_content/services.md` |
-| Discovery Session | `/services/initial-consultation/` | `site/services/initial-consultation/index.html` · copy: `site/text_content/service-initial-consultation.md` |
+| Discovery Call | `/services/initial-consultation/` | `site/services/initial-consultation/index.html` · copy: `site/text_content/service-initial-consultation.md` |
 | Individual Sessions | `/services/individual-sessions/` | `site/services/individual-sessions/index.html` · copy: `site/text_content/service-individual-sessions.md` |
 | Online Learning Modules | `/services/online-learning-modules/` | `site/services/online-learning-modules/index.html` · copy: `site/text_content/service-online-learning-modules.md` |
 | Team Sessions | `/services/team-sessions/` | `site/services/team-sessions/index.html` · copy: `site/text_content/service-team-sessions.md` |

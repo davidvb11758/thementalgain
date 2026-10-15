@@ -1,4 +1,4 @@
-# Discovery Session – detail page
+# Initial Consultation – detail page
 
 > **Notes**  
 > 
@@ -12,15 +12,8 @@
 
 **ID:** `service-initial-consultation-p1`
 
-Sign up for your FREE discovery session for individual clients. Here we will discuss the sport psychology process, explore your needs, and answer any questions.
+Learn more about The Mental Gain and how we can help your athlete or team. Sign up for a complimentary phone call with Sabrina to discuss your situation, needs, and get your questions answered.
 
-**ID:** `service-initial-consultation-p2`
-
-Have questions before getting started? Feel free to contact me, there is no long-term commitment required.
-
-**ID:** `service-initial-consultation-p3`
-
-Sessions can be online or in-person.
 
 ---
 
@@ -32,8 +25,8 @@ What to expect
 
 **ID:** `service-initial-consultation-card-p1`
 
-This is a 60-minute meeting to get to know each other and map out a plan for your future success. We will talk about your goals, how mental performance consulting works, and whether we are a good fit—without any pressure to commit beyond this conversation.
+This is a 30-minute phone call to get to know each other, your situation, and ensure we are a great fit\! We will talk about your goals, how mental performance consulting works, and answer all your questions \- without any pressure to commit beyond this conversation. Click the link below, scroll down and select “Discovery \- Phone Call”. Then pick a time you’d like to chat\! 
 
 **ID:** `service-initial-consultation-card-cta`
 
-Schedule your discovery session
+Schedule your Discovery Call
