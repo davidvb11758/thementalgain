@@ -38,7 +38,7 @@ See [docs/architecture.md](docs/architecture.md) and [CLAUDE.md](CLAUDE.md) for 
 
 1. Edit the page's Markdown in `site/text_content/`. Each `**ID:**` line names the HTML element that receives the paragraphs below it.
 2. Run `npm run bake:site` and check the HTML diff.
-3. Don't hand-edit text inside elements that have an ID, because the bake overwrites it. `my-clients.html`, `contact.html` and `book-me.html` have no Markdown file, so edit them directly.
+3. Don't hand-edit text inside elements that have an ID, because the bake overwrites it. `contact.html` and `book-me.html` have no Markdown file, so edit them directly.
 
 To change the footer, edit `site/partials/site-footer.html` and re-bake. The header and menu are still copied by hand into each page.
 

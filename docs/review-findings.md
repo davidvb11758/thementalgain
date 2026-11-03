@@ -46,6 +46,8 @@ Three separate things tell search engines to stay away:
 
 That's correct for staging. At cutover, remove the meta tag and the header line, and add `site/robots.txt` and `site/sitemap.xml`.
 
+**Done in the repo 2026-10-19, not yet deployed:** the meta tags and header line are removed, canonical links are added, and `site/robots.txt` and `site/sitemap.xml` exist. Tick the box above once the site is live on thementalgain.com and the sitemap is submitted in Search Console.
+
 ### 2. The services bake script never updates `services.html`
 - [ ] Fixed
 

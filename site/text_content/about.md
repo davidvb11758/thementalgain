@@ -51,7 +51,7 @@ Quick Facts About Sabrina
 
 * Former dual-sport collegiate athlete  
 * Former collegiate volleyball coach  
-* Coach at \#1 Volleyball Club in the Nation  
+* Coach at #1 Volleyball Club in the Nation  
 * Certified Mental Performance Consultant®  
 * Master's in Sport, Exercise, and Performance Psychology  
 * Master's in Sport Administration  

@@ -78,3 +78,21 @@ Not at all\! The Mental Gain doesn't require long-term contracts or commitments.
 Sabrina believes it's important that both she and your athlete feel they're a good fit. Sessions are scheduled and paid for individually, giving you the flexibility to continue training at a pace that works for your athlete's needs, goals, and schedule.
 
 ---
+
+**ID:** `faq-q5`
+
+How do I get my athlete on board if they’re hesitant about the process?
+
+**ID:** `faq-a5`
+
+This is completely normal, especially for younger athletes\! It can feel intimidating to open up to someone new, particularly about confidence, mistakes, or things they're struggling with.
+
+Fortunately, helping young athletes feel comfortable and confident is one of Sabrina's strengths. She especially enjoys working with athletes ages 13–15 and understands the importance of making athletes feel comfortable before they open up. Sabrina has over 14 years of experience working with young athletes, along with an undergraduate degree in Psychology and a Master’s in Sport Psychology. Her friendly, fun, and approachable style helps athletes feel at ease and gradually open up at their own pace.
+
+**How can YOU help your athlete feel more comfortable?**
+
+Rather than focusing on what they're struggling with, try asking what they'd like to improve about their mindset. Have they tried changing it on their own? What would it feel like if they reached their mental goals?
+
+Remind them that mental performance training isn't just about talking through struggles. It's about learning practical skills to become a stronger, more confident athlete. Just like they have a coach to help improve their physical skills, Sabrina is there to help train their mental skills. This type of training is something the majority of college and professional athletes participate in.
+
+&nbsp;

@@ -15,8 +15,8 @@
 
 Full-width image: `images/Sabrina Mountain 2b expand1920.jpg`. Headlines are static in `index.html` (not loaded from markdown):
 
-- **H2:** Promoting Peak Performance through Mental Skills Training  
-- **H3:** What do you have to gain?
+- **H2:** You Believe in Your Athlete. Let’s Help Them Believe in Themselves.&nbsp;  
+- **H3:** Build Confidence. Move On From Mistakes. Play to Their Potential.&nbsp;
 
 ---
 
@@ -30,9 +30,11 @@ Welcome to The Mental Gain
 
 **ID:** `home-welcome-body`
 
-I’m Sabrina..
+Hi, I’m Sabrina\!
 
-I am a ***Certified*** *Mental Performance Consultant*®. If you want to help your athlete or team play with ***confidence, move on from mistakes, or just start playing to their potential***, you’ve come to the right place. I’ve worked with hundreds of athletes to help them achieve their best mindset. Get ready to watch your athlete or team play to their potential, and get back to enjoying their sport\!
+I’m a ***Certified*** *Mental Performance Consultant*® who helps athletes develop the mental skills to perform at their best.
+
+**Does your athlete get stuck thinking about mistakes, struggle with confidence, or play better in practice than they do in games?** If so, you’ve come to the right place. I've worked with hundreds of athletes to help them believe in themselves, handle pressure, and get back to enjoying their sport\!
 
 ---
 

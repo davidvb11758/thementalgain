@@ -15,6 +15,7 @@ BAKE_SCRIPTS = (
     "render_services_from_md.py",
     "render_service_details_from_md.py",
     "render_faq_from_md.py",
+    "render_my_clients_from_md.py",
     "render_footer_from_partial.py",
 )
 

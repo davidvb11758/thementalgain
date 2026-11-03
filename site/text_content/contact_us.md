@@ -1,9 +1,9 @@
 # CONTACT US PAGE – Text Content
 
 > **Notes for the reader of this doc**
->
-> - Source: the current `site/contact.html`. This file is a copy of the page text for reference and editing.
-> - **Not baked yet:** `contact.html` has no Markdown source, so no bake script or JS loader reads this file. Edit the HTML directly, or ask for a bake step like the one for `about.md`.
+
+> - Source: the current `site/contact.html`. This file is a copy of the page text for reference and editing.  
+> - **Not baked yet:** `contact.html` has no Markdown source, so no bake script or JS loader reads this file. Edit the HTML directly, or ask for a bake step like the one for `about.md`.  
 > - The form field names, the hidden Web3Forms inputs and the `access_key` live in `contact.html` and `js/contact-form.js`. They are listed below for reference only.
 
 ---
@@ -22,7 +22,7 @@
 
 **Headline (h1, `contact-splash-heading`):** Contact Us
 
-**Tagline:** Ready to talk? Your next mental gain starts with a hello.
+**Tagline:** Not Sure Where to Start? Let's Chat.
 
 ---
 
@@ -30,34 +30,42 @@
 
 ### Let’s connect
 
-Take the first step toward improved mental performance. This isn’t a traditional “get tougher” conversation. We can discuss where you are and where you want to be. Everybody’s journey is different. Together let’s explore you and your situation. The time is right for you to improve your MENTAL game – what do YOU have to GAIN?
+**Taking the first step can feel intimidating, but imagine the difference it could make for your athlete\!**
 
-Or use the contact form.
+Whether your athlete struggles with confidence, gets stuck on mistakes, isn't playing to their potential, or simply wants to strengthen their mental game, we're here to help. Let's talk about your athlete's goals, what you'd like to see improve, and how mental performance training can help them get there.
+
+Reach out via our Contact Form, or book your first session under “Book Now”.
+
+**Still have questions? Or not sure how to get your athlete on board?**
+
+Check out our FAQs and tips for helping your athlete feel comfortable with mental performance training.
+
+ADD BUTTON FOR SERVICES PAGE&nbsp;
 
 ### Contact channels
 
 *(Each channel is an image link in `images/contact/`.)*
 
-* **Instagram:** @the.mental.gain — https://www.instagram.com/the.mental.gain/ (`instagram-rainbow-with-address2.png`)
-* **Email:** TheMentalGain@gmail.com — `mailto:TheMentalGain@gmail.com` (`email-drk-blue-with-address1.png`)
+* **Instagram:** @the.mental.gain — [https\://www\.instagram.com/the.mental.gain/](https://www.instagram.com/the.mental.gain/) (`instagram-rainbow-with-address2.png`)  
+* **Email:** [TheMentalGain@gmail.com](mailto:TheMentalGain@gmail.com) — `mailto:TheMentalGain@gmail.com` (`email-drk-blue-with-address1.png`)  
 * **Phone:** (319) 325-9499 — `tel:+13193259499` (`phone-drk-blue-with-number1.png`)
 
 ### Quote
 
-> Working with Sabrina was awesome. She has the experience to understand how I feel. Now I’m a stronger player and much happier on the court.
->
-> — Collegiate basketball player
+> Her performance has improved so much since working with you. And the one game she was off, she was able to let it go and move on. She said the work she is doing with you is helping so much.&nbsp;
+
+> — Volleyball parent of 14-year-old athlete
 
 ---
 
 ## \[Contact form\] (right column)
 
-Fields, in order (`*` = required):
+Fields, in order (`*` \= required):
 
-1. **Parent Name \*** — placeholder: Parents name
-2. **Player Name** — placeholder: Player name (optional)
-3. **Email \*** — placeholder: Email address
-4. **Phone** — placeholder: Phone e.g., 319-555-1212
+1. **Parent Name \*** — placeholder: Parents name  
+2. **Player Name** — placeholder: Player name (optional)  
+3. **Email \*** — placeholder: Email address  
+4. **Phone** — placeholder: Phone e.g., 319-555-1212  
 5. **Message** — placeholder: Please enter a message or question. (400 character limit, with a live “0 / 400” counter)
 
 **Submit button:** Send Message

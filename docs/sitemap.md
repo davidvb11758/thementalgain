@@ -12,7 +12,7 @@ From **TMG site layout.txt** / **TMG rqmts.docx**.
 | Team Sessions | `/services/team-sessions/` | `site/services/team-sessions/index.html` · copy: `site/text_content/service-team-sessions.md` |
 | My Clients | `/my-clients.html` | `site/my-clients.html` · testimonials, school logos, individual client types |
 | About TMG | `/about.html` | `site/about.html` · copy: `site/text_content/about.md` (My Story, CMPC, Instagram & podcast resources) |
-| Book Me | `/book-me.html` | `site/book-me.html` · SimplyBook widget |
+| Book Now | `/book-me.html` | `site/book-me.html` · SimplyBook widget |
 | Contact | `/contact.html` | `site/contact.html` · Web3Forms contact form |
 | Confidentiality | `/confidentiality/` | Not in main menu |
 

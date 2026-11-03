@@ -89,7 +89,7 @@ function initContactForm() {
       status.textContent = 'Thank you! Your message was sent. We will be in touch soon.';
       status.className = 'form-status is-success';
     } catch (err) {
-      status.textContent = 'Sorry, something went wrong. Please try again or email TheMentalGain@gmail.com directly.';
+      status.textContent = 'Sorry, something went wrong. Please try again later.';
       status.className = 'form-status is-error';
     } finally {
       button.disabled = false;

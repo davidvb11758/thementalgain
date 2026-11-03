@@ -48,7 +48,9 @@ The block parser and the inline Markdown handling (links, `**bold**`, `*em*`, `\
 
 **To edit copy:** change the `.md` file, run `npm run bake:site`, and check the HTML diff. Don't hand-edit text inside elements that have an ID, because the bake overwrites it. To add a new block, add the element with its ID to the HTML and the `**ID:**` block to the `.md` file, using the page's ID prefix.
 
-`my-clients.html`, `contact.html` and `book-me.html` have no Markdown source. Edit them directly.
+`contact.html` and `book-me.html` have no Markdown source. Edit them directly.
+
+`my-clients.html` is baked only, with no JS loader: `render_my_clients_from_md.py` fills the `my-clients-*` headings and lead paragraphs from `site/text_content/my-clients.md`. It also regenerates the individual and team client lists (`### Club` heading + `* chip` bullets, `{wide}` for the wide grid) between the `<!-- my-clients-individual-groups|team-groups:start/end -->` markers. The testimonial images and school logos stay in the HTML.
 
 ### Shared parts of every page
 
@@ -71,9 +73,11 @@ The block parser and the inline Markdown handling (links, `**bold**`, `*em*`, `\
 ### Cloudflare and staging
 
 - `site/_headers` sets security headers and cache rules for Cloudflare Pages.
-- The site is still staging: every page has `noindex`, both in a meta tag and in `_headers`. Remove both only at the production cutover.
+- Cutover prep is done in the repo (2026-10-19): the `noindex` meta tags and the `X-Robots-Tag` header are removed, every page has a canonical link to `https://thementalgain.com/...` (clean URLs: Pages serves `/about`, not `/about.html`), and `site/robots.txt` and `site/sitemap.xml` exist. **Don't `npm run deploy` or `deploy:only` before the cutover**, because the `*.pages.dev` preview would become indexable. Update this note once the domain is live.
+- Old WordPress URLs (`/?page_id=N`) can't be redirected with `_redirects` because Pages ignores query strings. The Cloudflare Redirect Rules to create are in `MigrationToCloudflare/redirect-rules.md`.
 - `/images/*` is cached for a year as `immutable`. When you change an image, give it a new filename.
-- `master.thementalgain.com` stays on the InMotion WordPress host.
+- `master.thementalgain.com` and `templesson.thementalgain.com` stay on the InMotion WordPress host (A records to `216.194.163.113`, DNS only).
+- `thementalgain.com` has Google Workspace mail (`admin@thementalgain.com`). When DNS moves to Cloudflare, keep `MX 1 smtp.google.com`, the Google site-verification TXT and the SPF record.
 
 ### Images
 

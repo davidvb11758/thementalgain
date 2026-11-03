@@ -1951,12 +1951,43 @@ h1, h2, h3, h4 {
 
 .contact-channels {
   list-style: none;
-  margin: 0 0 36px;
+  margin: 0 0 20px;
   padding: 0;
   display: flex;
   flex-direction: column;
   gap: 14px;
   align-items: flex-start;
+}
+
+.contact-faq {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin: 0 0 36px;
+}
+
+.contact-faq-text {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #25283d;
+}
+
+.contact-faq-link {
+  display: inline-block;
+  padding: 9px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #4057a1 0%, #17213c 100%);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.contact-faq-link:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
 }
 
 .contact-channels li {
