@@ -22,7 +22,7 @@ npm run deploy:only  # upload site/ without baking
 - `npm run deploy` publishes publicly. Only run it when the user asks.
 - **Preview vs Production:** Wrangler deploys under the current git branch (`main`), but the Pages project's production branch is `production`. So `npm run deploy` creates a **Preview**, served at `https://main.thementalgain.pages.dev`. `https://thementalgain.pages.dev` serves the last Production deployment, made from branch `production` on 2026-10-04.
   - To update Production, add `--branch=production` to the deploy command, or change the production branch in the Cloudflare dashboard. Confirm with the user first.
-  - The project uses direct upload and isn't connected to Git. No custom domain is attached yet.
+  - The project uses direct upload and isn't connected to Git.
 - Preview over HTTP, not `file://`: the pages `fetch()` their `text_content/*.md` at runtime. Any static server on `site/` works too (for example `python -m http.server -d site`).
 - The bake needs Python 3 and uses only the standard library. Node.js is only needed to run Wrangler with `npx`; there's nothing to `npm install`.
 - There are no tests, linters or formatters. To check a bake change, run `npm run bake:site` and review `git diff site/`.
@@ -73,7 +73,7 @@ The block parser and the inline Markdown handling (links, `**bold**`, `*em*`, `\
 ### Cloudflare and staging
 
 - `site/_headers` sets security headers and cache rules for Cloudflare Pages.
-- Cutover prep is done in the repo (2026-10-19): the `noindex` meta tags and the `X-Robots-Tag` header are removed, every page has a canonical link to `https://thementalgain.com/...` (clean URLs: Pages serves `/about`, not `/about.html`), and `site/robots.txt` and `site/sitemap.xml` exist. **Don't `npm run deploy` or `deploy:only` before the cutover**, because the `*.pages.dev` preview would become indexable. Update this note once the domain is live.
+- The cutover is done: thementalgain.com is served from Cloudflare (Production). The `noindex` meta tags and the `X-Robots-Tag` header are removed, every page has a canonical link to `https://thementalgain.com/...` (clean URLs: Pages serves `/about`, not `/about.html`), and `site/robots.txt` and `site/sitemap.xml` exist. Deploying to Production publishes to the live site, so still confirm with the user first.
 - Old WordPress URLs (`/?page_id=N`) can't be redirected with `_redirects` because Pages ignores query strings. The Cloudflare Redirect Rules to create are in `MigrationToCloudflare/redirect-rules.md`.
 - `/images/*` is cached for a year as `immutable`. When you change an image, give it a new filename.
 - `master.thementalgain.com` and `templesson.thementalgain.com` stay on the InMotion WordPress host (A records to `216.194.163.113`, DNS only).
