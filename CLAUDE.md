@@ -78,6 +78,10 @@ The block parser and the inline Markdown handling (links, `**bold**`, `*em*`, `\
 - `/images/*` is cached for a year as `immutable`. When you change an image, give it a new filename.
 - `master.thementalgain.com` and `templesson.thementalgain.com` stay on the InMotion WordPress host (A records to `216.194.163.113`, DNS only).
 - `thementalgain.com` has Google Workspace mail (`admin@thementalgain.com`). When DNS moves to Cloudflare, keep `MX 1 smtp.google.com`, the Google site-verification TXT and the SPF record.
+- **WordPress mail from InMotion (master and templesson):** emails sent by the LifterLMS sites (password reset, course enrollment) leave through InMotion's server, relayed via MailChannels, not through Google. The `thementalgain.com` SPF record only lists Google, so it doesn't cover them, and they authenticate with DKIM alone. Each site has its own `default._domainkey.<subdomain>` TXT record in Cloudflare. cPanel can't write to Cloudflare DNS, so copy any new key into Cloudflare by hand.
+  - Paste a DKIM value into Cloudflare as **one line with no line breaks**. A stray newline (shown as `\010` in the record) copied from cPanel's wrapped display made `default._domainkey.master` invalid, and Google's DMARC report (Oct 2026, in `MigrationToCloudflare/`) showed `dkim=fail`. Check a fixed record with `Resolve-DnsName <name> -Type TXT`: the chunks should be 255 + 156 characters with no control characters, the same as `templesson`.
+  - WordPress code must send From an address on the site's own domain, such as `wordpress@<site host>`, with the admin email as `Reply-To`. The admin email on both sites is a `@gmail.com` address. Sending From it can't authenticate, and on master PHP `mail()` failed with "Could not instantiate mail function" until the From was changed. The enrollment email function (`llms_send_admin_enrollment_email`, in the GeneratePress child theme's `functions.php`) lives on the InMotion host, not in this repo, and the same change is needed on both sites.
+  - If the server mail path keeps failing, the lasting fix is authenticated SMTP (Google Workspace or a transactional provider) through an SMTP plugin.
 
 ### Images
 
